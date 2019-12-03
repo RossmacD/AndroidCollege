@@ -1,4 +1,4 @@
-package com.example.ca1;
+package com.example.ca1androidapp;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -12,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.ca1.dummy.DummyContent;
+import com.example.ca1androidapp.dummy.DummyContent;
 
 /**
  * A fragment representing a single Item detail screen.

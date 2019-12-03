@@ -1,4 +1,4 @@
-package com.example.ca1;
+package com.example.ca1androidapp;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.ca1.dummy.DummyContent;
+import com.example.ca1androidapp.dummy.DummyContent;
 
 import java.util.List;
 
