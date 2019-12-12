@@ -6,15 +6,15 @@ import android.view.ViewGroup;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ca1androidapp.database.Exercise;
+import com.example.ca1androidapp.databinding.RecyclerItemBinding;
 
 import java.util.List;
-import androidx.databinding.DataBindingUtil;
 
 public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapter<MainActivityFragmentRecyclerViewAdapter.MainActivityFragmentRecyclerViewHolder> {
 
     private List<Exercise> exercises;
 
-    public MainActivityFragmentRecyclerViewAdapter(List<Exercise> Exercises) {
+    public MainActivityFragmentRecyclerViewAdapter(List<Exercise> exercises) {
         this.exercises = exercises;
     }
 

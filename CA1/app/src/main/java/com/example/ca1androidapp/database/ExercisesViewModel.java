@@ -8,21 +8,21 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-public class ExerciseViewModel extends AndroidViewModel {
+public class ExercisesViewModel extends AndroidViewModel {
 
-    private final LiveData<List<Exercise>> exercise;
+    private final LiveData<List<Exercise>> exercises;
 
-    public ExerciseViewModel(@NonNull Application application) {
+    public ExercisesViewModel(@NonNull Application application) {
         super(application);
 
-        exercise = ExerciseDatabase
+        exercises = ExerciseDatabase
                 .getInstance(getApplication())
                 .exerciseDAO()
                 .getAllExercises();
     }
 
     public LiveData<List<Exercise>> getExercise() {
-        return exercise;
+        return exercises;
     }
 }
 

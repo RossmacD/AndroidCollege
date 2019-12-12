@@ -27,8 +27,8 @@ public interface ExerciseDAO {
     void insertExercises(Exercise... exercises);
 
     @Update
-    void updateBlogPosts(Exercise... exercises);
+    void updateExercises(Exercise... exercises);
 
     @Delete
-    void deleteBlogPosts(Exercise... exercises);
+    void deleteExercises(Exercise... exercises);
 }

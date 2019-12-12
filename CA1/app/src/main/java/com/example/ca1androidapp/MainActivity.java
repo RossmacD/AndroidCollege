@@ -1,6 +1,5 @@
 package com.example.ca1androidapp;
 
-import
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +7,9 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.example.ca1androidapp.database.DatabaseInitializer;
 import com.example.ca1androidapp.database.ExerciseDatabase;
+import com.example.ca1androidapp.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

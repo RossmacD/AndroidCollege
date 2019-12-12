@@ -9,7 +9,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import com.example.ca1androidapp.database.ExerciseViewModel;
+import com.example.ca1androidapp.database.ExercisesViewModel;
+import com.example.ca1androidapp.databinding.FragmentMainBinding;
+
 
 import java.util.ArrayList;
 
@@ -32,7 +34,7 @@ public class MainActivityFragment extends Fragment {
 
         binding.recyclerView.setAdapter(recyclerViewAdapter);
 
-        ExerciseViewModel viewModel = ViewModelProviders.of(this).get(ExerciseViewModel.class);
+        ExercisesViewModel viewModel = ViewModelProviders.of(this).get(ExercisesViewModel.class);
 
         viewModel.getExercise().observe(MainActivityFragment.this, recyclerViewAdapter::setExercises);
 
