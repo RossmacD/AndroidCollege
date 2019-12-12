@@ -38,7 +38,7 @@ public class ItemDetailFragment extends Fragment {
      */
     public ItemDetailFragment() {
     }
-
+/*
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,5 +68,7 @@ public class ItemDetailFragment extends Fragment {
         }
 
         return rootView;
-    }
+    }*/
+
+
 }
