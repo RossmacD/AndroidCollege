@@ -28,9 +28,7 @@ public class DatabaseInitializer {
                 exercises.add(new Exercise("Exercises #2"));
                 exercises.add(new Exercise("Exercises #3"));
 
-                database.exerciseDAO()
-                        .insertExercises(
-                                exercises.toArray(new Exercise[exercises.size()]));
+                database.exerciseDAO().insertExercises(exercises.toArray(new Exercise[exercises.size()]));
             }
 
             return null;

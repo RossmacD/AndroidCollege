@@ -24,11 +24,11 @@ public class MainActivity extends AppCompatActivity {
         // Populate the Database.
         DatabaseInitializer.populateAsync(ExerciseDatabase.getInstance(getApplicationContext()));
 
-        // Set the layout.
+        // Set the layout and add toolbar
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         setSupportActionBar(binding.toolbar);
 
-        // When the Floating Action Button is clicked start the Add Blog Post Activity.
+        // When the Floating Action Button is clicked start the Add Exercise Activity.
       binding.fab.setOnClickListener((view) ->
                 startActivity(new Intent(MainActivity.this, AddExerciseActivity.class)));
 

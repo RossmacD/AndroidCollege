@@ -23,7 +23,7 @@
 
         <activity
             android:name=".AddExerciseActivity"
-            android:label="Add Blog Post"
+            android:label="Add Exercise"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data

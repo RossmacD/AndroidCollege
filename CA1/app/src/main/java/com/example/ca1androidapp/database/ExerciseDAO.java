@@ -9,6 +9,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
+//DAO - Specify SQL Querys and give them a method to call
 @Dao
 public interface ExerciseDAO {
     @Query("SELECT * FROM exercise_table")

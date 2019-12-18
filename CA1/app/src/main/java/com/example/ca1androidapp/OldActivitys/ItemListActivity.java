@@ -18,7 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.ca1androidapp.dummy.DummyContent;
+import com.example.ca1androidapp.OldActivitys.dummy.DummyContent;
 
 import java.util.List;
 

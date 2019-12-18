@@ -2,7 +2,7 @@ package com.example.ca1androidapp.OldActivitys;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.ca1androidapp.dummy.DummyContent;
+import com.example.ca1androidapp.OldActivitys.dummy.DummyContent;
 
 /**
  * A fragment representing a single Item detail screen.

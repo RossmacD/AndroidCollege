@@ -20,15 +20,10 @@ public class AddExerciseActivityFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        FragmentAddExerciseBinding binding = DataBindingUtil.inflate(
-                inflater,
-                R.layout.fragment_add_exercise,
-                container,
-                false);
+        FragmentAddExerciseBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_exercise, container, false);
 
         binding.addExerciseButton.setOnClickListener((view) -> {
-            String exerciseTitleEditTextContent = binding.addExerciseTextInputEditText
-                    .getText().toString().trim();
+            String exerciseTitleEditTextContent = binding.addExerciseTextInputEditText.getText().toString().trim();
 
             if (!exerciseTitleEditTextContent.isEmpty()) {
                 new AddExerciseTask(exerciseTitleEditTextContent).execute();

@@ -21,21 +21,23 @@ public class MainActivityFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(
-            LayoutInflater inflater,
-            ViewGroup container,
-            Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
+        //Create bindings for the main fragment
         FragmentMainBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
 
+        //
         MainActivityFragmentRecyclerViewAdapter recyclerViewAdapter = new MainActivityFragmentRecyclerViewAdapter(new ArrayList<>());
+
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         binding.recyclerView.setAdapter(recyclerViewAdapter);
 
+        //
         ExercisesViewModel viewModel = ViewModelProviders.of(this).get(ExercisesViewModel.class);
 
+        //Live Data is shown in the fragment
         viewModel.getExercise().observe(MainActivityFragment.this, recyclerViewAdapter::setExercises);
 
         return binding.getRoot();

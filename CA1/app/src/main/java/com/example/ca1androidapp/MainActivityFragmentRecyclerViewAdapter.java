@@ -19,17 +19,15 @@ public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapte
     }
 
     @Override
-    public MainActivityFragmentRecyclerViewHolder onCreateViewHolder(
-            ViewGroup parent, int viewType) {
+    public MainActivityFragmentRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         RecyclerItemBinding itemBinding = RecyclerItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
 
         return new MainActivityFragmentRecyclerViewHolder(itemBinding);
     }
 
     @Override
-    public void onBindViewHolder(
-            MainActivityFragmentRecyclerViewHolder holder, int position) {
-        String exerciseName = exercises.get(position).getName();
+    public void onBindViewHolder(MainActivityFragmentRecyclerViewHolder holder, int position) {
+        String exerciseName = exercises.get(position).getName()+position;
         holder.bind(exerciseName);
     }
 
