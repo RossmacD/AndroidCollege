@@ -10,12 +10,16 @@ import androidx.databinding.DataBindingUtil;
 import com.example.ca1androidapp.database.DatabaseInitializer;
 import com.example.ca1androidapp.database.ExerciseDatabase;
 import com.example.ca1androidapp.databinding.ActivityMainBinding;
+import com.facebook.stetho.Stetho;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Allows for database inspection,editing and debugging features from chrome - chrome:\\inspect
+        Stetho.initializeWithDefaults(this);
 
         // Populate the Database.
         DatabaseInitializer.populateAsync(ExerciseDatabase.getInstance(getApplicationContext()));
@@ -25,7 +29,9 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
 
         // When the Floating Action Button is clicked start the Add Blog Post Activity.
-        binding.fab.setOnClickListener((view) ->
-                startActivity(new Intent(MainActivity.this, AddExerciseActivity.class)));
+//        binding.fab.setOnClickListener((view) ->
+//                startActivity(new Intent(MainActivity.this, AddExerciseActivity.class)));
+
+
     }
 }

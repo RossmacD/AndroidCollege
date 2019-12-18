@@ -29,7 +29,7 @@ public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapte
     @Override
     public void onBindViewHolder(
             MainActivityFragmentRecyclerViewHolder holder, int position) {
-        String exerciseName = exercises.get(position).getExerciseName();
+        String exerciseName = exercises.get(position).getName();
         holder.bind(exerciseName);
     }
 

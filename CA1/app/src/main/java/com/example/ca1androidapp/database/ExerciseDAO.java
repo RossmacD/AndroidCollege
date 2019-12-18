@@ -11,16 +11,16 @@ import java.util.List;
 
 @Dao
 public interface ExerciseDAO {
-    @Query("SELECT * FROM exercise")
+    @Query("SELECT * FROM exercise_table")
     LiveData<List<Exercise>> getAllExercises();
 
-    @Query("SELECT * FROM exercise WHERE id = :id LIMIT 1")
+    @Query("SELECT * FROM exercise_table WHERE id = :id LIMIT 1")
     LiveData<List<Exercise>> findExerciseById(long id);
 
-    @Query("SELECT * FROM exercise WHERE name LIKE :name LIMIT 1")
+    @Query("SELECT * FROM exercise_table WHERE name LIKE :name LIMIT 1")
     LiveData<List<Exercise>> findExerciseByName(String name);
 
-    @Query("SELECT COUNT(*) FROM exercise")
+    @Query("SELECT COUNT(*) FROM exercise_table")
     int rowCount();
 
     @Insert

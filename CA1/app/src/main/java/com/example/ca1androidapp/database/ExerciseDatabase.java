@@ -17,11 +17,19 @@ import androidx.room.RoomDatabase;
                 INSTANCE = Room.databaseBuilder(
                         context.getApplicationContext(),
                         ExerciseDatabase.class,
-                        "ExerciseDatabase")
+                        "exercise_table")
                         .build();
             }
-
             return INSTANCE;
+
+//            if(instance == null) {
+//                synchronized (LOCK) {
+//                    if (instance == null) {
+//                        instance = Room.databaseBuilder(context.getApplicationContext(),
+//                                AppDatabase.class, DATABASE_NAME).build();
+//                    }
+//                }
+//            }
         }
 
         public static void destroyInstance() {

@@ -6,7 +6,7 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "exercise_table")
 public class Exercise {
 
     //Vars
@@ -31,8 +31,8 @@ public class Exercise {
     }
 
     @Ignore
-    public Exercise(String exerciseName){
-        this.name=exerciseName;
+    public Exercise(String name){
+        this.name=name;
     }
 
     //Getters and setters
@@ -44,11 +44,11 @@ public class Exercise {
         this.id = id;
     }
 
-    public String getExerciseName() {
+    public String getName() {
         return name;
     }
 
-    public void setExerciseName(String exerciseName) {
+    public void setName(String name) {
         this.name = name;
     }
 

@@ -1,8 +1,9 @@
-package com.example.ca1androidapp;
+package com.example.ca1androidapp.OldActivitys;
 
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.ca1androidapp.R;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 

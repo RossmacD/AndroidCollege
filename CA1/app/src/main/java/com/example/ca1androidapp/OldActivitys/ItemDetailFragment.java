@@ -1,16 +1,6 @@
-package com.example.ca1androidapp;
-
-import android.app.Activity;
-import android.os.Bundle;
-
-import com.google.android.material.appbar.CollapsingToolbarLayout;
+package com.example.ca1androidapp.OldActivitys;
 
 import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.example.ca1androidapp.dummy.DummyContent;
 
