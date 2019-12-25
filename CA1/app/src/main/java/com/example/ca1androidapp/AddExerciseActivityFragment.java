@@ -23,10 +23,13 @@ public class AddExerciseActivityFragment extends Fragment {
         FragmentAddExerciseBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_exercise, container, false);
 
         binding.addExerciseButton.setOnClickListener((view) -> {
-            String exerciseTitleEditTextContent = binding.addExerciseTextInputEditText.getText().toString().trim();
-
-            if (!exerciseTitleEditTextContent.isEmpty()) {
-                new AddExerciseTask(exerciseTitleEditTextContent).execute();
+            String exerciseNameFieldContent = binding.addExerciseNameField.getText().toString().trim();
+            int exerciseSetsFieldContent = Integer.parseInt(binding.addExerciseSetsField.getText().toString().trim());
+            int exerciseRepsFieldContent = Integer.parseInt(binding.addExerciseRepsField.getText().toString().trim());
+            float exerciseWeightFieldContent = Float.parseFloat(binding.addExerciseWeightField.getText().toString());
+            
+            if (!exerciseNameFieldContent.isEmpty()) {
+                new AddExerciseTask(exerciseNameFieldContent,exerciseSetsFieldContent,exerciseRepsFieldContent,exerciseWeightFieldContent).execute();
                 getActivity().finish();
             }
         });
@@ -36,14 +39,20 @@ public class AddExerciseActivityFragment extends Fragment {
 
     private class AddExerciseTask extends AsyncTask<Void, Void, Void> {
         String exerciseName;
+        int sets;
+        int reps;
+        float weight;
 
-        public AddExerciseTask(String exerciseName) {
+        public AddExerciseTask(String exerciseName,int sets,int reps, float weight) {
             this.exerciseName = exerciseName;
+            this.sets=sets;
+            this.reps=reps;
+            this.weight=weight;
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
-            ExerciseDatabase.getInstance(getActivity().getApplication()).exerciseDAO().insertExercises(new Exercise(exerciseName));
+            ExerciseDatabase.getInstance(getActivity().getApplication()).exerciseDAO().insertExercises(new Exercise(exerciseName,sets,reps,weight));
             return null;
         }
     }

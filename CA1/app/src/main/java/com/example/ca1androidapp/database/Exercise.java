@@ -16,8 +16,8 @@ public class Exercise {
     @ColumnInfo(name = "name")
     private String name;
 
-    @ColumnInfo(name = "set")
-    private int set;
+    @ColumnInfo(name = "sets")
+    private int sets;
 
     @ColumnInfo(name = "reps")
     private int reps;
@@ -30,9 +30,18 @@ public class Exercise {
 
     }
 
+    //Old Constructor
     @Ignore
     public Exercise(String name){
         this.name=name;
+    }
+
+    @Ignore
+    public Exercise(String name, int sets, int reps, float weight){
+        this.name=name;
+        this.sets=sets;
+        this.reps=reps;
+        this.weight=weight;
     }
 
     //Getters and setters
@@ -52,12 +61,12 @@ public class Exercise {
         this.name = name;
     }
 
-    public int getSet() {
-        return set;
+    public int getSets() {
+        return sets;
     }
 
-    public void setSet(int set) {
-        this.set = set;
+    public void setSets(int set) {
+        this.sets = set;
     }
 
     public int getReps() {

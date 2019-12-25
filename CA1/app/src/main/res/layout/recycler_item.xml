@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:id="@+id/exerciseTextView"
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline"
-         />
+        app:cardCornerRadius="5dp"
+        app:cardElevation="2dp"
+        app:cardMaxElevation="2dp"
+        app:contentPadding="8dp"
+        app:contentPaddingLeft="16dp"
+        app:contentPaddingRight="16dp"
+        android:layout_margin="4dp">
+
+        <TextView
+            android:id="@+id/exerciseTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+
+    </androidx.cardview.widget.CardView>
 </layout>

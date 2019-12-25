@@ -24,9 +24,9 @@ public class DatabaseInitializer {
             // If the Database is empty, add the initial data.
             if (database.exerciseDAO().rowCount() == 0) {
                 List<Exercise> exercises = new ArrayList<>();
-                exercises.add(new Exercise("Exercise #1"));
-                exercises.add(new Exercise("Exercises #2"));
-                exercises.add(new Exercise("Exercises #3"));
+                exercises.add(new Exercise("Push ups",8,12,15));
+                exercises.add(new Exercise("Military press",12,6,15));
+                exercises.add(new Exercise("Dead lift",4,4,75));
 
                 database.exerciseDAO().insertExercises(exercises.toArray(new Exercise[exercises.size()]));
             }
