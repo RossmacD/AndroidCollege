@@ -1,5 +1,5 @@
-#Exercise Scheduling Application
-###Mobile Computing Module | IADT Creative Computing | Year 3
+# Exercise Scheduling Application
+### Mobile Computing Module | IADT Creative Computing | Year 3
 Written by Ross MacDonald - N00171147
 
 This is an android application with the goal of being an exercise scheduler.\
