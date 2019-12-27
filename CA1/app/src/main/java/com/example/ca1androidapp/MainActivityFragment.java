@@ -27,7 +27,7 @@ public class MainActivityFragment extends Fragment {
         FragmentMainBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
 
         //
-        MainActivityFragmentRecyclerViewAdapter recyclerViewAdapter = new MainActivityFragmentRecyclerViewAdapter(new ArrayList<>());
+        MainActivityFragmentRecyclerViewAdapter recyclerViewAdapter = new MainActivityFragmentRecyclerViewAdapter(new ArrayList<>(),getActivity().getApplication());
 
 
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));

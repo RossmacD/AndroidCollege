@@ -14,11 +14,41 @@
         app:contentPaddingRight="16dp"
         android:layout_margin="4dp">
 
-        <TextView
-            android:id="@+id/exerciseTextView"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/exerciseTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                app:layout_constraintEnd_toStartOf="@+id/editIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:padding="8dp"/>
+
+            <ImageView
+                android:id="@+id/editIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_create_black_24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/exerciseTextView"
+
+                app:layout_constraintEnd_toStartOf="@+id/deleteIcon"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/deleteIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@android:drawable/ic_delete"
+                app:layout_constraintBottom_toBottomOf="@+id/editIcon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/editIcon"
+                android:padding="8dp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 </layout>

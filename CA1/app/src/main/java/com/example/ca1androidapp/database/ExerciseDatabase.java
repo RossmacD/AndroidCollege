@@ -24,7 +24,6 @@ import androidx.room.RoomDatabase;
         public static void destroyInstance() {
             INSTANCE = null;
         }
-
         public abstract ExerciseDAO exerciseDAO();
     }
 

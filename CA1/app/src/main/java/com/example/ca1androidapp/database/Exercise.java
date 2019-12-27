@@ -1,10 +1,15 @@
 package com.example.ca1androidapp.database;
 
 
+import android.os.AsyncTask;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(tableName = "exercise_table")
 public class Exercise {
@@ -84,4 +89,5 @@ public class Exercise {
     public void setWeight(float weight) {
         this.weight = weight;
     }
+
 }

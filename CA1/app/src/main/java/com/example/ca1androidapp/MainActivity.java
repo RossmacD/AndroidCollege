@@ -3,6 +3,7 @@ package com.example.ca1androidapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -19,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //Allows for database inspection,editing and debugging features from chrome - chrome:\\inspect
-       // Stetho.initializeWithDefaults(this);
+        Stetho.initializeWithDefaults(this);
 
         // Populate the Database.
         DatabaseInitializer.populateAsync(ExerciseDatabase.getInstance(getApplicationContext()));
@@ -29,9 +30,10 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
 
         // When the Floating Action Button is clicked start the Add Exercise Activity.
-      binding.fab.setOnClickListener((view) ->
-                startActivity(new Intent(MainActivity.this, AddExerciseActivity.class)));
-
+      binding.fab.setOnClickListener((view) ->{
+                startActivity(new Intent(MainActivity.this, AddExerciseActivity.class));
+      }
+      );
 
     }
 }

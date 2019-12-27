@@ -1,11 +1,18 @@
 package com.example.ca1androidapp;
 
+import android.content.Context;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ca1androidapp.database.DatabaseInitializer;
 import com.example.ca1androidapp.database.Exercise;
+import com.example.ca1androidapp.database.ExerciseDatabase;
 import com.example.ca1androidapp.databinding.RecyclerItemBinding;
 
 import java.util.List;
@@ -13,8 +20,11 @@ import java.util.List;
 public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapter<MainActivityFragmentRecyclerViewAdapter.MainActivityFragmentRecyclerViewHolder> {
 
     private List<Exercise> exercises;
+    private Context context;
 
-    public MainActivityFragmentRecyclerViewAdapter(List<Exercise> exercises) {
+
+    public MainActivityFragmentRecyclerViewAdapter(List<Exercise> exercises, Context context) {
+        this.context=context;
         this.exercises = exercises;
     }
 
@@ -27,8 +37,8 @@ public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapte
 
     @Override
     public void onBindViewHolder(MainActivityFragmentRecyclerViewHolder holder, int position) {
-        String exerciseName = exercises.get(position).getName();
-        holder.bind(exerciseName);
+        Exercise exercise=exercises.get(position);
+        holder.bind(exercise,context);
     }
 
     @Override
@@ -46,14 +56,37 @@ public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapte
 
         RecyclerItemBinding binding;
 
+
         MainActivityFragmentRecyclerViewHolder(RecyclerItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
 
-        void bind(String exerciseName) {
+        void bind(Exercise exercise, Context context) {
+            binding.deleteIcon.setOnClickListener(view -> {
+                //ExerciseDatabase.getInstance(context).exerciseDAO().deleteExercises(exercise);
+                new DeleteAsyncTask(exercise,context).execute();
+            });
+
+            String exerciseName = exercise.getName();
             binding.exerciseTextView.setText(exerciseName);
             binding.executePendingBindings();
+        }
+    }
+
+    private static class DeleteAsyncTask extends AsyncTask<Void, Void, Void> {
+        Exercise exercise;
+        Context context;
+
+        public DeleteAsyncTask(Exercise exercise, Context context) {
+            this.context=context;
+            this.exercise = exercise;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            ExerciseDatabase.getInstance(context).exerciseDAO().deleteExercises(exercise);
+            return null;
         }
     }
 }
