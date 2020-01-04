@@ -16,7 +16,7 @@ public interface ExerciseDAO {
     LiveData<List<Exercise>> getAllExercises();
 
     @Query("SELECT * FROM exercise_table WHERE id = :id LIMIT 1")
-    LiveData<List<Exercise>> findExerciseById(long id);
+    Exercise findExerciseById(long id);
 
     @Query("SELECT * FROM exercise_table WHERE name LIKE :name LIMIT 1")
     LiveData<List<Exercise>> findExerciseByName(String name);

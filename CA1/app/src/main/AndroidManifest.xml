@@ -22,7 +22,7 @@
 
 
         <activity
-            android:name=".AddExerciseActivity"
+            android:name=".NewAddExerciseActivity"
             android:label="Add Exercise"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         // When the Floating Action Button is clicked start the Add Exercise Activity.
       binding.fab.setOnClickListener((view) ->{
-                startActivity(new Intent(MainActivity.this, AddExerciseActivity.class));
+                startActivity(new Intent(MainActivity.this, NewAddExerciseActivity.class));
       }
       );
 

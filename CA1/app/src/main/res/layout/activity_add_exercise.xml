@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="exercise"
+            type="com.example.ca1androidapp.database.Exercise"/>
+    </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,8 +19,6 @@
             android:layout_height="wrap_content"
             android:theme="@style/AppTheme.AppBarOverlay"
             >
-
-
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -25,7 +30,8 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_add_exercise"/>
+    <include layout="@layout/content_add_exercise"
+        bind:exercise="@{exercise}"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

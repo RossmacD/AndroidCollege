@@ -20,6 +20,7 @@ public class AddExerciseActivityFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         FragmentAddExerciseBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_exercise, container, false);
 
         binding.addExerciseButton.setOnClickListener((view) -> {
@@ -27,7 +28,7 @@ public class AddExerciseActivityFragment extends Fragment {
             int exerciseSetsFieldContent = Integer.parseInt(binding.addExerciseSetsField.getText().toString().trim());
             int exerciseRepsFieldContent = Integer.parseInt(binding.addExerciseRepsField.getText().toString().trim());
             float exerciseWeightFieldContent = Float.parseFloat(binding.addExerciseWeightField.getText().toString());
-            
+
             if (!exerciseNameFieldContent.isEmpty()) {
                 new AddExerciseTask(exerciseNameFieldContent,exerciseSetsFieldContent,exerciseRepsFieldContent,exerciseWeightFieldContent).execute();
                 getActivity().finish();

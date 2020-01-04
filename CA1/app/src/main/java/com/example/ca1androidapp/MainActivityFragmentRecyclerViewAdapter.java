@@ -1,6 +1,7 @@
 package com.example.ca1androidapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -63,10 +64,18 @@ public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapte
         }
 
         void bind(Exercise exercise, Context context) {
+            //Set an onClickListener on the delete icon to asynchronously delete the exercise
             binding.deleteIcon.setOnClickListener(view -> {
-                //ExerciseDatabase.getInstance(context).exerciseDAO().deleteExercises(exercise);
                 new DeleteAsyncTask(exercise,context).execute();
             });
+
+            //Edit Icon onClickListener
+            binding.editIcon.setOnClickListener(
+                    (view) ->{
+                        int exerciseId=exercise.getId();
+                        context.startActivity(new Intent(context, NewAddExerciseActivity.class).putExtra("exerciseId", exerciseId));
+                    }
+            );
 
             String exerciseName = exercise.getName();
             binding.exerciseTextView.setText(exerciseName);
