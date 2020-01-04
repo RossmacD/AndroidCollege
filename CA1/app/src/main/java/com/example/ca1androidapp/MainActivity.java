@@ -3,7 +3,6 @@ package com.example.ca1androidapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         // When the Floating Action Button is clicked start the Add Exercise Activity.
       binding.fab.setOnClickListener((view) ->{
-                startActivity(new Intent(MainActivity.this, NewAddExerciseActivity.class));
+                startActivity(new Intent(MainActivity.this, AddExerciseActivity.class));
       }
       );
 

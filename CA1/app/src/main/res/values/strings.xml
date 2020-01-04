@@ -1,9 +1,7 @@
 <resources>
     <string name="app_name">Ca1AndroidApp</string>
-    <string name="title_item_detail">Item Detail</string>
     <string name="exercise_name_hint">Exercise Name</string>
     <string name="add_exercise_button_text">Add Exercise</string>
-    <string name="exercise_weight_hint">Weight</string>
     <string name="exercise_reps_hint">Reps</string>
     <string name="exercise_sets_hint">Sets</string>
 </resources>

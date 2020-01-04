@@ -7,17 +7,14 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.LiveData;
 
 import com.example.ca1androidapp.database.Exercise;
-import com.example.ca1androidapp.database.ExerciseDAO;
 import com.example.ca1androidapp.database.ExerciseDatabase;
 import com.example.ca1androidapp.databinding.ActivityAddExerciseBinding;
 
-import java.util.List;
-
 public class AddExerciseActivity extends AppCompatActivity {
     private  Exercise exercise;
+    private Boolean isUpdating;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,13 +22,40 @@ public class AddExerciseActivity extends AppCompatActivity {
 
         //Pass Id through to the fragment of editing
         if(getIntent().getExtras() != null) {
+            isUpdating=true;
             int exerciseId = getIntent().getExtras().getInt("exerciseId");
             Log.d("Rossi","Id is:" + exerciseId);
             new SelectExerciseTask(exerciseId, this, binding).execute();;
-           //exercise =  ExerciseDatabase.getInstance(getApplicationContext()).exerciseDAO().findExerciseById(exerciseId);
-
+        }else{
+            isUpdating=false;
         }
 
+
+        binding.addExerciseButton.setOnClickListener((view) -> {
+            String exerciseNameFieldContent = binding.addExerciseNameField.getText().toString().trim();
+            int exerciseRepsFieldContent = Integer.parseInt(binding.addExerciseRepsField.getText().toString().trim());
+            int exerciseIntervalFieldContent = Integer.parseInt(binding.addExerciseIntervalField.getText().toString().trim());
+            int exerciseSetsFieldContent = Integer.parseInt(binding.addExerciseSetsField.getText().toString().trim());
+            int exerciseSetBreakFieldContent = Integer.parseInt(binding.addExerciseSetBreakField.getText().toString().trim());
+
+            if (!exerciseNameFieldContent.isEmpty()) {
+                if(isUpdating){
+                    Log.d("Rossi","Exercise is:" + binding.getExercise().getId() + " : " + binding.getExercise().getName());
+                    Exercise exercise=binding.getExercise();
+                    exercise.setName(exerciseNameFieldContent);
+                    exercise.setReps(exerciseRepsFieldContent);
+                    exercise.setInterval(exerciseIntervalFieldContent);
+                    exercise.setSets(exerciseSetsFieldContent);
+                    exercise.setSetBreak(exerciseSetBreakFieldContent);
+
+                    new UpdateExerciseTask(binding.getExercise()).execute();
+                    finish();
+                }else {
+                    new AddExerciseTask(exerciseNameFieldContent, exerciseRepsFieldContent,exerciseIntervalFieldContent,exerciseSetsFieldContent,exerciseSetBreakFieldContent).execute();
+                    finish();
+                }
+            }
+        });
 
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -55,6 +79,42 @@ public class AddExerciseActivity extends AppCompatActivity {
             Log.d("Rossi","Exercise is:" + exercise);
             binding.setExercise(exercise);
          return null;
+        }
+    }
+
+    private class AddExerciseTask extends AsyncTask<Void, Void, Void> {
+        String exerciseName;
+        int reps;
+        int interval;
+        int sets;
+        int setBreak;
+
+        public AddExerciseTask(String exerciseName,int reps,int interval, int sets, int setBreak) {
+            this.exerciseName = exerciseName;
+            this.reps=reps;
+            this.interval=interval;
+            this.sets=sets;
+            this.setBreak=setBreak;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            ExerciseDatabase.getInstance(getApplication()).exerciseDAO().insertExercises(new Exercise( exerciseName, reps, interval,  sets,  setBreak));
+            return null;
+        }
+    }
+
+    private class UpdateExerciseTask extends AsyncTask<Void, Void, Void> {
+        Exercise exercise;
+
+        public UpdateExerciseTask(Exercise exercise) {
+            this.exercise=exercise;
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            ExerciseDatabase.getInstance(getApplication()).exerciseDAO().updateExercises(exercise);
+            return null;
         }
     }
 }

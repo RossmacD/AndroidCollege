@@ -1,15 +1,9 @@
 package com.example.ca1androidapp.database;
-
-
-import android.os.AsyncTask;
-
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity(tableName = "exercise_table")
 public class Exercise {
@@ -21,32 +15,31 @@ public class Exercise {
     @ColumnInfo(name = "name")
     private String name;
 
-    @ColumnInfo(name = "sets")
-    private int sets;
-
     @ColumnInfo(name = "reps")
     private int reps;
 
-    @ColumnInfo(name = "weight")
-    private float weight;
+    @ColumnInfo(name = "interval")
+    private int interval;
+
+    @ColumnInfo(name = "sets")
+    private int sets;
+
+    @ColumnInfo(name = "set_break")
+    private int setBreak;
+
 
     //Constructors
     public Exercise(){
 
     }
 
-    //Old Constructor
     @Ignore
-    public Exercise(String name){
-        this.name=name;
-    }
-
-    @Ignore
-    public Exercise(String name, int sets, int reps, float weight){
+    public Exercise(String name, int reps, int sets, int interval,int setBreak){
         this.name=name;
         this.sets=sets;
         this.reps=reps;
-        this.weight=weight;
+        this.interval=interval;
+        this.setBreak=setBreak;
     }
 
     //Getters and setters
@@ -66,14 +59,6 @@ public class Exercise {
         this.name = name;
     }
 
-    public int getSets() {
-        return sets;
-    }
-
-    public void setSets(int set) {
-        this.sets = set;
-    }
-
     public int getReps() {
         return reps;
     }
@@ -82,12 +67,27 @@ public class Exercise {
         this.reps = reps;
     }
 
-    public float getWeight() {
-        return weight;
+    public int getSets() {
+        return sets;
     }
 
-    public void setWeight(float weight) {
-        this.weight = weight;
+    public void setSets(int set) {
+        this.sets = set;
     }
 
+    public int getInterval() {
+        return interval;
+    }
+
+    public void setInterval(int interval) {
+        this.interval = interval;
+    }
+
+    public int getSetBreak() {
+        return setBreak;
+    }
+
+    public void setSetBreak(int setBreak) {
+        this.setBreak = setBreak;
+    }
 }

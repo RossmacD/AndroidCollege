@@ -3,15 +3,11 @@ package com.example.ca1androidapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ca1androidapp.database.DatabaseInitializer;
 import com.example.ca1androidapp.database.Exercise;
 import com.example.ca1androidapp.database.ExerciseDatabase;
 import com.example.ca1androidapp.databinding.RecyclerItemBinding;
@@ -19,10 +15,8 @@ import com.example.ca1androidapp.databinding.RecyclerItemBinding;
 import java.util.List;
 
 public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapter<MainActivityFragmentRecyclerViewAdapter.MainActivityFragmentRecyclerViewHolder> {
-
     private List<Exercise> exercises;
     private Context context;
-
 
     public MainActivityFragmentRecyclerViewAdapter(List<Exercise> exercises, Context context) {
         this.context=context;
@@ -73,7 +67,7 @@ public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapte
             binding.editIcon.setOnClickListener(
                     (view) ->{
                         int exerciseId=exercise.getId();
-                        context.startActivity(new Intent(context, NewAddExerciseActivity.class).putExtra("exerciseId", exerciseId));
+                        context.startActivity(new Intent(context, AddExerciseActivity.class).putExtra("exerciseId", exerciseId));
                     }
             );
 

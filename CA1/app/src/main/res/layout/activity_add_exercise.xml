@@ -30,8 +30,95 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_add_exercise"
-        bind:exercise="@{exercise}"/>
+<!--    <include layout="@layout/content_add_exercise"-->
+<!--        bind:exercise="@{exercise}"/>-->
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".NewAddExerciseActivityFragment"
+            tools:showIn="@layout/activity_add_exercise"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <EditText
+                android:id="@+id/addExerciseNameField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
+                android:ems="10"
+                android:text='@{exercise.name?? ""}'
+                android:hint="@string/exercise_name_hint"
+                android:inputType="textPersonName"
+                android:singleLine="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+
+            <EditText
+                android:id="@+id/addExerciseRepsField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
+                android:ems="10"
+                android:hint="@string/exercise_reps_hint"
+                android:text='@{exercise.name != null ? String.valueOf(exercise.reps): ""}'
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="@+id/addExerciseNameField"
+                app:layout_constraintStart_toStartOf="@+id/addExerciseNameField"
+                app:layout_constraintTop_toBottomOf="@+id/addExerciseNameField" />
+
+            <EditText
+                android:id="@+id/addExerciseIntervalField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
+                android:ems="10"
+                android:hint="Interval"
+                android:text='@{exercise.name != null ? String.valueOf(exercise.interval): ""}'
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="@+id/addExerciseRepsField"
+                app:layout_constraintStart_toStartOf="@+id/addExerciseRepsField"
+                app:layout_constraintTop_toBottomOf="@+id/addExerciseRepsField" />
+
+
+            <EditText
+                android:id="@+id/addExerciseSetsField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
+                android:ems="10"
+                android:hint="@string/exercise_sets_hint"
+                android:text='@{exercise.name != null ? String.valueOf(exercise.sets): ""}'
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="@+id/addExerciseIntervalField"
+                app:layout_constraintStart_toStartOf="@+id/addExerciseIntervalField"
+                app:layout_constraintTop_toBottomOf="@+id/addExerciseIntervalField" />
+            <EditText
+                android:id="@+id/addExerciseSetBreakField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
+                android:ems="10"
+                android:hint="Set Break"
+                android:text='@{exercise.name != null ? String.valueOf(exercise.setBreak): ""}'
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="@+id/addExerciseSetsField"
+                app:layout_constraintStart_toStartOf="@+id/addExerciseSetsField"
+                app:layout_constraintTop_toBottomOf="@+id/addExerciseSetsField" />
+
+
+            <Button
+                android:id="@+id/add_exercise_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/add_exercise_button_text"
+                app:layout_constraintEnd_toEndOf="@+id/addExerciseSetBreakField"
+                app:layout_constraintTop_toBottomOf="@id/addExerciseSetBreakField" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
