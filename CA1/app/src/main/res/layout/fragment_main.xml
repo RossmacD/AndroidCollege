@@ -2,11 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
 
     xmlns:tools="http://schemas.android.com/tools">
+
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity"
-        android:layout_marginBottom="48dp"
+        tools:context=".NewMainActivity"
+
     >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -15,7 +17,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             tools:context=".MainActivityFragment"
-            tools:showIn="@layout/activity_main"
+            tools:showIn="@layout/activity_new_main"
             >
 
 
@@ -34,6 +36,8 @@
             android:layout_width="wrap_content"
             android:src="@android:drawable/ic_input_add"
             android:layout_gravity="bottom|end"
-            android:layout_margin="16dp"/>
+            android:layout_margin="16dp"
+            />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </layout>

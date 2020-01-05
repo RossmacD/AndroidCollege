@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 import com.example.ca1androidapp.database.DatabaseInitializer;
 import com.example.ca1androidapp.database.ExerciseDatabase;
-import com.example.ca1androidapp.databinding.ActivityMainBinding;
 import com.facebook.stetho.Stetho;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
