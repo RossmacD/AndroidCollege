@@ -1,5 +1,6 @@
 package com.example.ca1androidapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +34,13 @@ public class MainActivityFragment extends Fragment {
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         binding.recyclerView.setAdapter(recyclerViewAdapter);
+
+
+// When the Floating Action Button is clicked start the Add Exercise Activity.
+        binding.fab.setOnClickListener((view) ->{
+                    startActivity(new Intent(getActivity(), AddExerciseActivity.class));
+                }
+        );
 
         //
         ExercisesViewModel viewModel = ViewModelProviders.of(this).get(ExercisesViewModel.class);

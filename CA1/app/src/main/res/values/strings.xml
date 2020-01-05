@@ -4,4 +4,8 @@
     <string name="add_exercise_button_text">Add Exercise</string>
     <string name="exercise_reps_hint">Reps</string>
     <string name="exercise_sets_hint">Sets</string>
+    <string name="title_activity_new_main">NewMainActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

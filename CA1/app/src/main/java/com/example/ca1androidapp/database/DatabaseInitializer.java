@@ -26,6 +26,20 @@ public class DatabaseInitializer {
                 List<Exercise> exercises = new ArrayList<>();
                 exercises.add(new Exercise("Push ups",8,12,15,12));
                 exercises.add(new Exercise("Military press",12,6,15,12));
+                exercises.add(new Exercise("Dead lift",4,4,75,12));exercises.add(new Exercise("Push ups",8,12,15,12));
+                exercises.add(new Exercise("Military press",12,6,15,12));
+                exercises.add(new Exercise("Dead lift",4,4,75,12));exercises.add(new Exercise("Push ups",8,12,15,12));
+                exercises.add(new Exercise("Military press",12,6,15,12));
+                exercises.add(new Exercise("Dead lift",4,4,75,12));exercises.add(new Exercise("Push ups",8,12,15,12));
+                exercises.add(new Exercise("Military press",12,6,15,12));
+                exercises.add(new Exercise("Dead lift",4,4,75,12));exercises.add(new Exercise("Push ups",8,12,15,12));
+                exercises.add(new Exercise("Military press",12,6,15,12));
+                exercises.add(new Exercise("Dead lift",4,4,75,12));exercises.add(new Exercise("Push ups",8,12,15,12));
+                exercises.add(new Exercise("Military press",12,6,15,12));
+                exercises.add(new Exercise("Dead lift",4,4,75,12));exercises.add(new Exercise("Push ups",8,12,15,12));
+                exercises.add(new Exercise("Military press",12,6,15,12));
+                exercises.add(new Exercise("Dead lift",4,4,75,12));exercises.add(new Exercise("Push ups",8,12,15,12));
+                exercises.add(new Exercise("Military press",12,6,15,12));
                 exercises.add(new Exercise("Dead lift",4,4,75,12));
 
                 database.exerciseDAO().insertExercises(exercises.toArray(new Exercise[exercises.size()]));
