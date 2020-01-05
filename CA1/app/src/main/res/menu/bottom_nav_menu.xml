@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/navigation_exercises"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_shopping_list"
         android:title="Exercises" />
 
     <item
         android:id="@+id/navigation_go"
-        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:icon="@drawable/ic_stretching_exercises"
         android:title="Go!" />
 
-    <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_notifications" />
+<!--    <item-->
+<!--        android:id="@+id/navigation_notifications"-->
+<!--        android:icon="@drawable/ic_notifications_black_24dp"-->
+<!--        android:title="@string/title_notifications" />-->
 
 </menu>

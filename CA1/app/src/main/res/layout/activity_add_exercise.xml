@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -41,46 +40,85 @@
             tools:showIn="@layout/activity_add_exercise"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <EditText
-                android:id="@+id/addExerciseNameField"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/addExerciseNameFieldLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/fab_margin"
-                android:ems="10"
-                android:text='@{exercise.name?? ""}'
-                android:hint="@string/exercise_name_hint"
-                android:inputType="textPersonName"
-                android:singleLine="true"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:layout_margin="@dimen/fab_margin">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/addExerciseNameField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
 
+                    android:ems="10"
+                    android:text='@{exercise.name?? ""}'
+                    android:hint="@string/exercise_name_hint"
+                    android:inputType="textPersonName"
+                    android:singleLine="true"
+                     />
+            </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/repSliderText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_exercise_button"/>
+            <com.google.android.material.slider.Slider
+                android:id="@+id/repsSlider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:value="5"
+                android:valueFrom="0"
+                android:valueTo="10"
+                android:stepSize="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/repSliderText"/>
 
-            <EditText
-                android:id="@+id/addExerciseRepsField"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:id="@+id/addExerciseRepsFieldLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/fab_margin"
-                android:ems="10"
-                android:hint="@string/exercise_reps_hint"
-                android:text='@{exercise.name != null ? String.valueOf(exercise.reps): ""}'
-                android:inputType="number"
-                app:layout_constraintEnd_toEndOf="@+id/addExerciseNameField"
-                app:layout_constraintStart_toStartOf="@+id/addExerciseNameField"
-                app:layout_constraintTop_toBottomOf="@+id/addExerciseNameField" />
+                app:layout_constraintEnd_toEndOf="@+id/addExerciseNameFieldLayout"
+                app:layout_constraintStart_toStartOf="@+id/addExerciseNameFieldLayout"
+                app:layout_constraintTop_toBottomOf="@+id/addExerciseNameFieldLayout">
+                <EditText
+                    android:id="@+id/addExerciseRepsField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="@string/exercise_reps_hint"
+                    android:text='@{exercise.name != null ? String.valueOf(exercise.reps): ""}'
+                    android:inputType="number"
+                     />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/addExerciseIntervalField"
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:id="@+id/addExerciseIntervalFieldLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/fab_margin"
-                android:ems="10"
-                android:hint="Interval"
-                android:text='@{exercise.name != null ? String.valueOf(exercise.interval): ""}'
-                android:inputType="number"
-                app:layout_constraintEnd_toEndOf="@+id/addExerciseRepsField"
-                app:layout_constraintStart_toStartOf="@+id/addExerciseRepsField"
-                app:layout_constraintTop_toBottomOf="@+id/addExerciseRepsField" />
+                app:layout_constraintEnd_toEndOf="@+id/addExerciseRepsFieldLayout"
+                app:layout_constraintStart_toStartOf="@+id/addExerciseRepsFieldLayout"
+                app:layout_constraintTop_toBottomOf="@+id/addExerciseRepsFieldLayout">
+                <EditText
+                    android:id="@+id/addExerciseIntervalField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Interval"
+                    android:text='@{exercise.name != null ? String.valueOf(exercise.interval): ""}'
+                    android:inputType="number"
+                     />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
             <EditText
@@ -92,9 +130,10 @@
                 android:hint="@string/exercise_sets_hint"
                 android:text='@{exercise.name != null ? String.valueOf(exercise.sets): ""}'
                 android:inputType="number"
-                app:layout_constraintEnd_toEndOf="@+id/addExerciseIntervalField"
-                app:layout_constraintStart_toStartOf="@+id/addExerciseIntervalField"
-                app:layout_constraintTop_toBottomOf="@+id/addExerciseIntervalField" />
+                app:layout_constraintEnd_toEndOf="@+id/addExerciseIntervalFieldLayout"
+                app:layout_constraintStart_toStartOf="@+id/addExerciseIntervalFieldLayout"
+                app:layout_constraintTop_toBottomOf="@+id/addExerciseIntervalFieldLayout" />
+
             <EditText
                 android:id="@+id/addExerciseSetBreakField"
                 android:layout_width="match_parent"
@@ -114,12 +153,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="@string/add_exercise_button_text"
+                android:text="Done"
                 app:layout_constraintEnd_toEndOf="@+id/addExerciseSetBreakField"
                 app:layout_constraintTop_toBottomOf="@id/addExerciseSetBreakField" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </layout>
