@@ -13,8 +13,8 @@
 
     <fragment
         android:id="@+id/navigation_go"
-        android:name="com.example.ca1androidapp.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:name="com.example.ca1androidapp.GoFragment"
+        android:label="Go!"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment

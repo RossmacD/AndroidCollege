@@ -14,7 +14,6 @@ public class ExercisesViewModel extends AndroidViewModel {
 
     public ExercisesViewModel(@NonNull Application application) {
         super(application);
-
         exercises = ExerciseDatabase.getInstance(getApplication()).exerciseDAO().getAllExercises();
     }
 

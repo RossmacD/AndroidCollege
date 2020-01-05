@@ -13,6 +13,9 @@ import java.util.List;
 @Dao
 public interface ExerciseDAO {
     @Query("SELECT * FROM exercise_table")
+    List<Exercise> getAllExercisesSync();
+
+    @Query("SELECT * FROM exercise_table")
     LiveData<List<Exercise>> getAllExercises();
 
     @Query("SELECT * FROM exercise_table WHERE id = :id LIMIT 1")
