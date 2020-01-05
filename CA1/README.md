@@ -1,4 +1,4 @@
-# Exercise Scheduling Application
+# Exercise TTS Coach Application
 ### Mobile Computing Module | IADT Creative Computing | Year 3
 Written by Ross MacDonald - N00171147
 
