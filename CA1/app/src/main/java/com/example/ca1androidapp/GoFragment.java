@@ -92,7 +92,9 @@ public class GoFragment extends Fragment {
 
     public void setExercises(List<Exercise> exercises) {
         this.exercises = exercises;
-        startSession();
+        if(getActivity()!=null){
+            startSession();
+        }
     }
 
     public void startSession(){
@@ -243,7 +245,7 @@ public class GoFragment extends Fragment {
 
 
     private void ConvertTextToSpeech(String s) {
-            speaking=true;
+        speaking=true;
         HashMap<String, String> map = new HashMap<String, String>();
         map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "UniqueID");
         tts.speak(s, TextToSpeech.QUEUE_FLUSH, map);
