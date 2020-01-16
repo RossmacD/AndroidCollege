@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".NewMainActivity"
+            android:name=".MainActivity"
             android:label="Exercises"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -23,11 +23,11 @@
         <activity
             android:name=".AddExerciseActivity"
             android:label="Add Exercise"
-            android:parentActivityName=".NewMainActivity"
+            android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".NewMainActivity" />
+                android:value=".MainActivity" />
         </activity>
     </application>
 

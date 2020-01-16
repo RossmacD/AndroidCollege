@@ -46,8 +46,6 @@ public class GoFragment extends Fragment {
     private Boolean stopped, speaking;
     TextToSpeech tts;
     Handler handler;
-    //FragmentGoBinding binding;
-
     public GoFragment() {
         // Required empty public constructor
     }
@@ -56,19 +54,15 @@ public class GoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        //Generate binding
-        //binding = DataBindingUtil.inflate(inflater, R.layout.fragment_go, container, false);
         speaking=false;
 
-        //getActivity().getActionBar().hide();
-        //exercises = ExerciseDatabase.getInstance(getActivity().getApplication()).exerciseDAO().getAllExercisesSync();
         ExercisesViewModel viewModel = ViewModelProviders.of(this).get(ExercisesViewModel.class);
 
         //Live Data is shown in the fragment
         viewModel.getExercise().observe(getActivity(), this::setExercises);
 
 
-        //
+        //get handle to main loop
         handler=new Handler(Looper.getMainLooper());
 
         // Inflate the layout for this fragment
@@ -86,7 +80,7 @@ public class GoFragment extends Fragment {
         super.onStop();
         //Add Tool bar back in
         ((AppCompatActivity)getActivity()).getSupportActionBar().show();
-        //Kill Async tasks
+        //Kill Thread tasks
         stopped=true;
     }
 
@@ -98,64 +92,57 @@ public class GoFragment extends Fragment {
     }
 
     public void startSession(){
+        //Get views
         nameText=getActivity().findViewById(R.id.nameText);
         countText=getActivity().findViewById(R.id.countText);
         goText=getActivity().findViewById(R.id.goText);
         setText=getActivity().findViewById(R.id.setText);
         progressBar=getActivity().findViewById(R.id.progressBar);
         stopButton=getActivity().findViewById(R.id.stopButton);
+        //Kill switch
         stopButton.setOnClickListener((view) -> {
                 stopped=true;
-
             }
-
         );
         prepareTTS();
         speaking=true;
         stopped=false;
-     //  new UiQueue().execute();
+
         new Thread(() -> {
             while (speaking && !stopped){
-                //Do nothing
+                //Do nothing - wait till talking has stopped
             }
             for(Exercise exercise : exercises){
-
                 ConvertTextToSpeech("Now starting"+exercise.getName());
                 while (speaking && !stopped){
-                    //Do nothing
+                    //Do nothing - wait till talking has stopped
                 }
+                //Update UI thread
                 handler.post(() -> {
                     goText.setText("GO!");
                     countText.setBackgroundResource(R.drawable.circle);
                 });
-                Log.d("rossi","Speaking "+speaking);
-
-               /* Log.d("rossi","Exercise Name= "+exercise.getName());
-                Log.d("rossi","Exercise reps= "+exercise.getReps());
-                Log.d("rossi","Exercise sets= "+exercise.getSets());*/
                 for(int setCount=1;setCount<=exercise.getSets();setCount++) {
+                    //Check if the loop should be killed
                     if(stopped){
                         break;
                     }
-                   //Log.d("rossi","Exercise set= "+setCount);
                     final int  finalSetCount=setCount;
                     ConvertTextToSpeech("Set "+setCount+", GO!");
 
                     while (speaking && !stopped){
-                        //Do nothing
+                        //Do nothing - wait till speaking has stopped
                     }
+                    //Make changes in UI thread
                     handler.post(() -> {
                         goText.setText("GO!");
-
                         countText.setBackgroundResource(R.drawable.circle);
                     });
                     for (int repCount = 1; repCount <= exercise.getReps(); repCount++) {
-                        /*Log.d("rossi", "Rep " + repCount);*/
                         //Stop task when button pressed
                         if(stopped){
                             break;
                         }
-
                         //Set vars for passing into ui thread
                         final int finalRepCount=repCount;
                         handler.post(() -> {
@@ -167,7 +154,6 @@ public class GoFragment extends Fragment {
                             }else{
                                 progressBar.setProgress( Math.round((finalRepCount*100)/exercise.getReps()));
                             }
-                            Log.d("rossi", "progress " + (finalRepCount*100)/exercise.getReps());
                             setText.setText("Set: "+finalSetCount+"/"+exercise.getSets());
                             ConvertTextToSpeech(""+finalRepCount);
                         });
@@ -199,95 +185,57 @@ public class GoFragment extends Fragment {
             ConvertTextToSpeech("Exercise complete, well done");
 
         }).start();
-
-
     }
 
+    /**
+     * Initialise TTS & add listener
+     */
     private void prepareTTS(){
-
-
         tts=new TextToSpeech(getActivity(), status -> {
             if(status == TextToSpeech.SUCCESS){
                 Log.e("RossTTs", "success");
+                //Listener to see if TTS is still speaking
                 tts.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+                    //If TTS is Done
                     @Override
                     public void onDone(String utteranceId) {
                         speaking=false;
                         Log.e("RossTTs", "Done");
                     }
+                    //If TTS has an error
                     @Override
                     public void onError(String utteranceId) {
                         speaking=false;
-                        Log.e("RossTTs", "Error");
                     }
+                    //Runs when TTS is started
                     @Override
                     public void onStart(String utteranceId) {
                         speaking=true;
-                        Log.e("RossTTs", "Started");
                     }
                 });
+                //Set the TTS language
                 int result=tts.setLanguage(Locale.US);
+                //If there is an error loading the language
                 if(result==TextToSpeech.LANG_MISSING_DATA ||
                         result==TextToSpeech.LANG_NOT_SUPPORTED){
                     Log.e("RossTTs", "This Language is not supported");
                 }
                 else{
+                    //Run first  TTS Command
                     ConvertTextToSpeech("Lets Begin");
                 }
             }
             else
+                //Error Catch
                 Log.e("RossTTs", "Initilization Failed!");
         });
-
-
     }
-
-
 
     private void ConvertTextToSpeech(String s) {
         speaking=true;
+        //The string is put into a hash map and queued - ID is irrelevent but needed for the listener
         HashMap<String, String> map = new HashMap<String, String>();
         map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "UniqueID");
         tts.speak(s, TextToSpeech.QUEUE_FLUSH, map);
     }
-
-    //An async task to run the queue without blocking the main ui thread
-//    private class UiQueue extends AsyncTask<Void, Void, Void> {
-//
-//        public UiQueue() {
-//
-//        }
-//
-//        @Override
-//        protected Void doInBackground(Void... voids) {
-//            for(Exercise exercise : exercises){
-//                Log.d("rossi","Exercise Name= "+exercise.getName());
-//                Log.d("rossi","Exercise reps= "+exercise.getReps());
-//                Log.d("rossi","Exercise sets= "+exercise.getSets());
-//                for(int setCount=1;setCount<=exercise.getSets();setCount++) {
-//                    Log.d("rossi","Exercise set= "+setCount);
-//                    for (int repCount = 1; repCount <= exercise.getReps(); repCount++) {
-//                        Log.d("rossi", "Rep " + repCount);
-//                        //Stop task when button pressed
-//                        if(stopped){
-//                            return null;
-//                        }
-//                        //Set vars for passing into ui thread
-//                        final int finalRepCount=repCount, finalSetCount=setCount;
-//                        handler.post(() -> {
-//                            goText.setText(exercise.getName()+" | "+finalRepCount+" | "+finalSetCount);
-//                        });
-//
-//                        //Wait
-//                        try {
-//                            Thread.sleep(exercise.getInterval()*1000);
-//                        } catch (InterruptedException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                }
-//            }
-//            return null;
-//        }
-//    }
 }

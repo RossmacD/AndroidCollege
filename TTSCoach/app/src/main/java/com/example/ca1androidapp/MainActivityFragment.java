@@ -27,16 +27,17 @@ public class MainActivityFragment extends Fragment {
         //Create bindings for the main fragment
         FragmentMainBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
 
-        //
+        //Initilise the recyclerview adapter
         MainActivityFragmentRecyclerViewAdapter recyclerViewAdapter = new MainActivityFragmentRecyclerViewAdapter(new ArrayList<>(),getActivity().getApplication());
 
-
+        //Set the layout manger for the
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        //Attach  the adapter to the recycler view
         binding.recyclerView.setAdapter(recyclerViewAdapter);
 
 
-// When the Floating Action Button is clicked start the Add Exercise Activity.
+        // When the Floating Action Button is clicked start the Add Exercise Activity.
         binding.fab.setOnClickListener((view) ->{
                     startActivity(new Intent(getActivity(), AddExerciseActivity.class));
                 }
@@ -44,10 +45,8 @@ public class MainActivityFragment extends Fragment {
 
         //
         ExercisesViewModel viewModel = ViewModelProviders.of(this).get(ExercisesViewModel.class);
-
-        //Live Data is shown in the fragment
+        //Live Data is shown in the fragment - it updates the ui if the database is updated
         viewModel.getExercise().observe(MainActivityFragment.this, recyclerViewAdapter::setExercises);
-
         return binding.getRoot();
     }
 }

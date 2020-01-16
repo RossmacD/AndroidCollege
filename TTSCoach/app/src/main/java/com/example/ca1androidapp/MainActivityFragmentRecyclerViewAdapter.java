@@ -3,7 +3,6 @@ package com.example.ca1androidapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import java.util.List;
 public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapter<MainActivityFragmentRecyclerViewAdapter.MainActivityFragmentRecyclerViewHolder> {
     private List<Exercise> exercises;
     private Context context;
-
 
     public MainActivityFragmentRecyclerViewAdapter(List<Exercise> exercises, Context context) {
         this.context=context;
@@ -51,9 +49,7 @@ public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapte
 
     static class MainActivityFragmentRecyclerViewHolder
             extends RecyclerView.ViewHolder {
-
         RecyclerItemBinding binding;
-        private Boolean expanded=false;
 
         MainActivityFragmentRecyclerViewHolder(RecyclerItemBinding binding) {
             super(binding.getRoot());
@@ -66,7 +62,7 @@ public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapte
                 new DeleteAsyncTask(exercise,context).execute();
             });
 
-            //Edit Icon onClickListener
+            //Edit Icon onClickListener -> opens create activity with an extra of the ID
             binding.editIcon.setOnClickListener(
                     (view) ->{
                         int exerciseId=exercise.getId();
@@ -74,6 +70,8 @@ public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapte
                     }
             );
 
+
+            //Opens and closes the card
             binding.expandIcon.setOnClickListener(
                     (view)->{
                         if(binding.fullView.getVisibility()!=View.VISIBLE){
@@ -86,6 +84,7 @@ public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapte
                         }
                     }
             );
+
 
             String exerciseName = exercise.getName();
             int exerciseReps= exercise.getReps();
