@@ -7,13 +7,18 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         app:cardCornerRadius="5dp"
-        app:cardElevation="2dp"
-        app:cardMaxElevation="2dp"
+        app:cardElevation="3dp"
+        app:cardMaxElevation="4dp"
         app:contentPadding="8dp"
         app:contentPaddingLeft="16dp"
-        app:contentPaddingRight="16dp">
+        app:contentPaddingRight="16dp"
+
+       >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -60,48 +65,57 @@
                 app:layout_constraintTop_toTopOf="@+id/deleteIcon" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/fullView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/fullView"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="24dp"
+                android:animateLayoutChanges="true"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/expandIcon"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/exerciseTextView"
-                android:animateLayoutChanges="true"
-                android:visibility="gone">
-
+                app:layout_constraintTop_toBottomOf="@+id/exerciseTextView">
                 <TextView
-                    android:textSize="16sp"
+                    style="@style/TextAppearance.AppCompat.Body2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:text="Workout Details"
+                    android:id="@+id/detailHeading"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+                <TextView
                     android:id="@+id/repsTextLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
                     android:text="Reps:"
+                    android:layout_marginTop="8dp"
+                    android:textSize="16sp"
                     android:visibility="visible"
                     app:layout_constraintEnd_toStartOf="@+id/repsTextView"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/detailHeading" />
 
                 <TextView
                     android:id="@+id/repsTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
                     android:text="100"
+                    android:textSize="16sp"
                     android:visibility="visible"
-                    app:layout_constraintEnd_toStartOf="@+id/intervalTextLabel"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/repsTextLabel"
                     app:layout_constraintTop_toTopOf="@+id/repsTextLabel" />
 
                 <TextView
-                    android:textSize="16sp"
                     android:id="@+id/intervalTextLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:text="Interval:"
+                    android:textSize="16sp"
                     android:visibility="visible"
                     app:layout_constraintEnd_toStartOf="@+id/intervalTextView"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -109,12 +123,12 @@
                     app:layout_constraintTop_toTopOf="@+id/repsTextView" />
 
                 <TextView
-                    android:textSize="16sp"
                     android:id="@+id/intervalTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:text="100"
+                    android:textSize="16sp"
                     android:visibility="visible"
                     app:layout_constraintEnd_toStartOf="@+id/setsLabel"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -122,12 +136,12 @@
                     app:layout_constraintTop_toTopOf="@+id/repsTextView" />
 
                 <TextView
-                    android:textSize="16sp"
                     android:id="@+id/setsLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:text="Sets:"
+                    android:textSize="16sp"
                     android:visibility="visible"
                     app:layout_constraintEnd_toStartOf="@+id/setsTextView"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -135,12 +149,12 @@
                     app:layout_constraintTop_toTopOf="@+id/intervalTextView" />
 
                 <TextView
-                    android:textSize="16sp"
                     android:id="@+id/setsTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:text="100"
+                    android:textSize="16sp"
                     android:visibility="visible"
                     app:layout_constraintEnd_toStartOf="@+id/setBreakLabel"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -148,12 +162,12 @@
                     app:layout_constraintTop_toTopOf="@+id/setsLabel" />
 
                 <TextView
-                    android:textSize="16sp"
                     android:id="@+id/setBreakLabel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:text="Set Break:"
+                    android:textSize="16sp"
                     android:visibility="visible"
                     app:layout_constraintEnd_toStartOf="@+id/setBreak"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -161,12 +175,12 @@
                     app:layout_constraintTop_toTopOf="@+id/setsTextView" />
 
                 <TextView
-                    android:textSize="16sp"
                     android:id="@+id/setBreak"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:text="100"
+                    android:textSize="16sp"
                     android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
