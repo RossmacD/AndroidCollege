@@ -14,6 +14,7 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:layout_marginTop="16dp"
             android:id="@+id/nameText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -31,9 +32,9 @@
             android:id="@+id/countText"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:background="@drawable/circle"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:background="@drawable/circle_red"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
             android:gravity="center"
             android:text="..."
             android:textColor="#FFFFFF"
@@ -46,8 +47,8 @@
         <ProgressBar
             android:id="@+id/progressBar"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
             android:indeterminate="false"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -85,7 +86,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="18dp"
             android:text="STOP"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/setText" />
