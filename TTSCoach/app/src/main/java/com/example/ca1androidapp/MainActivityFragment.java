@@ -1,11 +1,9 @@
 package com.example.ca1androidapp;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -27,7 +25,7 @@ public class MainActivityFragment extends Fragment {
         //Create bindings for the main fragment
         FragmentMainBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
 
-        //Initilise the recyclerview adapter
+        //Initialise the recyclerview adapter
         MainActivityFragmentRecyclerViewAdapter recyclerViewAdapter = new MainActivityFragmentRecyclerViewAdapter(new ArrayList<>(),getActivity().getApplication());
 
         //Set the layout manger for the
