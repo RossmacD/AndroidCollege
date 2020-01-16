@@ -5,7 +5,7 @@
     <data>
         <variable
             name="exercise"
-            type="com.example.ca1androidapp.database.Exercise"/>
+            type="com.example.ttscoach.database.Exercise"/>
     </data>
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"

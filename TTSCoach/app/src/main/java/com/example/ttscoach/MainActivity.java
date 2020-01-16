@@ -1,15 +1,12 @@
-package com.example.ca1androidapp;
+package com.example.ttscoach;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.ca1androidapp.database.DatabaseInitializer;
-import com.example.ca1androidapp.database.ExerciseDatabase;
-import com.facebook.stetho.Stetho;
+import com.example.ttscoach.database.DatabaseInitializer;
+import com.example.ttscoach.database.ExerciseDatabase;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;

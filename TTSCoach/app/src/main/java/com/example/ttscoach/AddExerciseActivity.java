@@ -1,4 +1,4 @@
-package com.example.ca1androidapp;
+package com.example.ttscoach;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -8,9 +8,9 @@ import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import com.example.ca1androidapp.database.Exercise;
-import com.example.ca1androidapp.database.ExerciseDatabase;
-import com.example.ca1androidapp.databinding.ActivityAddExerciseBinding;
+import com.example.ttscoach.database.Exercise;
+import com.example.ttscoach.database.ExerciseDatabase;
+import com.example.ttscoach.databinding.ActivityAddExerciseBinding;
 
 public class AddExerciseActivity extends AppCompatActivity {
     private  Exercise exercise;

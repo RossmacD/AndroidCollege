@@ -1,4 +1,4 @@
-package com.example.ca1androidapp.database;
+package com.example.ttscoach.database;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

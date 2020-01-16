@@ -1,4 +1,4 @@
-package com.example.ca1androidapp;
+package com.example.ttscoach;
 
 import android.content.Context;
 import android.content.Intent;
@@ -9,9 +9,9 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.ca1androidapp.database.Exercise;
-import com.example.ca1androidapp.database.ExerciseDatabase;
-import com.example.ca1androidapp.databinding.RecyclerItemBinding;
+import com.example.ttscoach.database.Exercise;
+import com.example.ttscoach.database.ExerciseDatabase;
+import com.example.ttscoach.databinding.RecyclerItemBinding;
 
 import java.util.List;
 

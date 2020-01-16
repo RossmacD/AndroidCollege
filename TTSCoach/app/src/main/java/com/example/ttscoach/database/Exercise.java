@@ -1,4 +1,4 @@
-package com.example.ca1androidapp.database;
+package com.example.ttscoach.database;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;

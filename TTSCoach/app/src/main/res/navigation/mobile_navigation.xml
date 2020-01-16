@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_exercises"
-        android:name="com.example.ca1androidapp.MainActivityFragment"
+        android:name="com.example.ttscoach.MainActivityFragment"
         android:label="Exercises"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_go"
-        android:name="com.example.ca1androidapp.GoFragment"
+        android:name="com.example.ttscoach.GoFragment"
         android:label="Go!"
         tools:layout="@layout/fragment_dashboard" />
 

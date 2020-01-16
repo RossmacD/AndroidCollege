@@ -1,4 +1,4 @@
-package com.example.ca1androidapp;
+package com.example.ttscoach;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,8 +8,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import com.example.ca1androidapp.database.ExercisesViewModel;
-import com.example.ca1androidapp.databinding.FragmentMainBinding;
+import com.example.ttscoach.database.ExercisesViewModel;
+import com.example.ttscoach.databinding.FragmentMainBinding;
 
 
 import java.util.ArrayList;

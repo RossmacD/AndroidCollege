@@ -1,16 +1,11 @@
-package com.example.ca1androidapp;
+package com.example.ttscoach;
 
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Handler;
@@ -25,10 +20,9 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.example.ca1androidapp.database.Exercise;
-import com.example.ca1androidapp.database.ExerciseDatabase;
-import com.example.ca1androidapp.database.ExercisesViewModel;
-import com.example.ca1androidapp.databinding.FragmentGoBinding;
+import com.example.ttscoach.database.Exercise;
+import com.example.ttscoach.database.ExercisesViewModel;
+import com.example.ttscoach.databinding.FragmentGoBinding;
 
 import java.util.HashMap;
 import java.util.List;

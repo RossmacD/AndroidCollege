@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ca1androidapp">
+    package="com.example.ttscoach">
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.ttscoach.MainActivity"
             android:label="Exercises"
             android:theme="@style/AppTheme">
             <intent-filter>
@@ -21,13 +21,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AddExerciseActivity"
+            android:name="com.example.ttscoach.AddExerciseActivity"
             android:label="Add Exercise"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.example.ttscoach.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.example.ttscoach.MainActivity" />
         </activity>
     </application>
 
