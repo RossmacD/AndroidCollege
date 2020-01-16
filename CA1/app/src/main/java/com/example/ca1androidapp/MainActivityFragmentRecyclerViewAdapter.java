@@ -3,7 +3,9 @@ package com.example.ca1androidapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,6 +19,7 @@ import java.util.List;
 public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapter<MainActivityFragmentRecyclerViewAdapter.MainActivityFragmentRecyclerViewHolder> {
     private List<Exercise> exercises;
     private Context context;
+
 
     public MainActivityFragmentRecyclerViewAdapter(List<Exercise> exercises, Context context) {
         this.context=context;
@@ -50,7 +53,7 @@ public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapte
             extends RecyclerView.ViewHolder {
 
         RecyclerItemBinding binding;
-
+        private Boolean expanded=false;
 
         MainActivityFragmentRecyclerViewHolder(RecyclerItemBinding binding) {
             super(binding.getRoot());
@@ -71,8 +74,29 @@ public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapte
                     }
             );
 
+            binding.expandIcon.setOnClickListener(
+                    (view)->{
+                        if(binding.fullView.getVisibility()!=View.VISIBLE){
+                            binding.fullView.setVisibility(View.VISIBLE);
+                            binding.expandIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_keyboard_arrow_up_black_24dp));
+
+                        } else {
+                            binding.fullView.setVisibility(View.GONE);
+                            binding.expandIcon.setImageDrawable(context.getResources().getDrawable(R.drawable.ic_keyboard_arrow_down_black_24dp));
+                        }
+                    }
+            );
+
             String exerciseName = exercise.getName();
+            int exerciseReps= exercise.getReps();
+            int exerciseInterval= exercise.getInterval();
+            int exerciseSets= exercise.getSets();
+            int exerciseSetBreak= exercise.getSetBreak();
             binding.exerciseTextView.setText(exerciseName);
+            binding.repsTextView.setText(String.valueOf(exerciseReps));
+            binding.intervalTextView.setText(String.valueOf(exerciseInterval));
+            binding.setsTextView.setText(String.valueOf(exerciseSets));
+            binding.setBreak.setText(String.valueOf(exerciseSetBreak));
             binding.executePendingBindings();
         }
     }

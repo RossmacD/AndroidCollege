@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:animateLayoutChanges="true">
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="4dp"
         app:cardCornerRadius="5dp"
         app:cardElevation="2dp"
         app:cardMaxElevation="2dp"
         app:contentPadding="8dp"
         app:contentPaddingLeft="16dp"
-        app:contentPaddingRight="16dp"
-        android:layout_margin="4dp">
+        app:contentPaddingRight="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/exerciseTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:padding="8dp"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 app:layout_constraintEnd_toStartOf="@+id/editIcon"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:padding="8dp"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/editIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="8dp"
                 android:src="@drawable/ic_create_black_24dp"
                 app:layout_constraintBottom_toBottomOf="@+id/exerciseTextView"
-
                 app:layout_constraintEnd_toStartOf="@+id/deleteIcon"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -42,11 +43,137 @@
                 android:id="@+id/deleteIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@android:drawable/ic_delete"
+                android:padding="8dp"
+                android:src="@drawable/ic_delete_forever_black_24dp"
                 app:layout_constraintBottom_toBottomOf="@+id/editIcon"
+                app:layout_constraintEnd_toStartOf="@+id/expandIcon"
+                app:layout_constraintTop_toTopOf="@+id/editIcon" />
+
+            <ImageView
+                android:id="@+id/expandIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:src="@drawable/ic_keyboard_arrow_down_black_24dp"
+                app:layout_constraintBottom_toBottomOf="@+id/deleteIcon"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/editIcon"
-                android:padding="8dp"/>
+                app:layout_constraintTop_toTopOf="@+id/deleteIcon" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/fullView"
+                app:layout_constraintEnd_toEndOf="@+id/expandIcon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/exerciseTextView"
+                android:animateLayoutChanges="true"
+                android:visibility="gone">
+
+                <TextView
+                    android:textSize="16sp"
+                    android:id="@+id/repsTextLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Reps:"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toStartOf="@+id/repsTextView"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/repsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:text="100"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toStartOf="@+id/intervalTextLabel"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/repsTextLabel"
+                    app:layout_constraintTop_toTopOf="@+id/repsTextLabel" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:id="@+id/intervalTextLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="Interval:"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toStartOf="@+id/intervalTextView"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/repsTextView"
+                    app:layout_constraintTop_toTopOf="@+id/repsTextView" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:id="@+id/intervalTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="100"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toStartOf="@+id/setsLabel"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/intervalTextLabel"
+                    app:layout_constraintTop_toTopOf="@+id/repsTextView" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:id="@+id/setsLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="Sets:"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toStartOf="@+id/setsTextView"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/intervalTextView"
+                    app:layout_constraintTop_toTopOf="@+id/intervalTextView" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:id="@+id/setsTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="100"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toStartOf="@+id/setBreakLabel"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/setsLabel"
+                    app:layout_constraintTop_toTopOf="@+id/setsLabel" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:id="@+id/setBreakLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="Set Break:"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toStartOf="@+id/setBreak"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/setsTextView"
+                    app:layout_constraintTop_toTopOf="@+id/setsTextView" />
+
+                <TextView
+                    android:textSize="16sp"
+                    android:id="@+id/setBreak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:text="100"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/setBreakLabel"
+                    app:layout_constraintTop_toTopOf="@+id/setBreakLabel" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

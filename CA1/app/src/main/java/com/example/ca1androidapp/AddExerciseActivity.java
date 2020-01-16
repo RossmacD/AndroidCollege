@@ -33,10 +33,10 @@ public class AddExerciseActivity extends AppCompatActivity {
 
         binding.addExerciseButton.setOnClickListener((view) -> {
             String exerciseNameFieldContent = binding.addExerciseNameField.getText().toString().trim();
-            int exerciseRepsFieldContent = Math.round(binding.repsSlider.getValue());
-            int exerciseIntervalFieldContent = Integer.parseInt(binding.addExerciseIntervalField.getText().toString().trim());
+            int exerciseRepsFieldContent = Integer.parseInt(binding.addExerciseRepsField.getText().toString().trim());
+            int exerciseIntervalFieldContent =  Math.round(binding.intervalSlider.getValue());
             int exerciseSetsFieldContent = Integer.parseInt(binding.addExerciseSetsField.getText().toString().trim());
-            int exerciseSetBreakFieldContent = Integer.parseInt(binding.addExerciseSetBreakField.getText().toString().trim());
+            int exerciseSetBreakFieldContent =  Math.round(binding.setBreakSlider.getValue());
 
             if (!exerciseNameFieldContent.isEmpty()) {
                 if(isUpdating){

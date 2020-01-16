@@ -2,7 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
         <variable
             name="exercise"
@@ -29,16 +28,15 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-<!--    <include layout="@layout/content_add_exercise"-->
-<!--        bind:exercise="@{exercise}"/>-->
-
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".NewAddExerciseActivityFragment"
             tools:showIn="@layout/activity_add_exercise"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:clipToPadding="false"
+            android:clipChildren="false"
+            >
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/addExerciseNameFieldLayout"
@@ -52,7 +50,6 @@
                     android:id="@+id/addExerciseNameField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:ems="10"
                     android:text='@{exercise.name?? ""}'
                     android:hint="@string/exercise_name_hint"
@@ -61,96 +58,100 @@
                      />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/repSliderText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Reps"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/addExerciseNameFieldLayout" />
-            <com.google.android.material.slider.Slider
-                android:id="@+id/repsSlider"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:value='@{exercise.name != null ? Float.valueOf(exercise.reps): Float.valueOf(5)}'
-                android:valueFrom="0"
-                android:valueTo="10"
-                android:stepSize="1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/repSliderText"/>
-
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"-->
-<!--                android:id="@+id/addExerciseRepsFieldLayout"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_margin="@dimen/fab_margin"-->
-<!--                app:layout_constraintEnd_toEndOf="@+id/addExerciseNameFieldLayout"-->
-<!--                app:layout_constraintStart_toStartOf="@+id/addExerciseNameFieldLayout"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/addExerciseNameFieldLayout">-->
-<!--                <EditText-->
-<!--                    android:id="@+id/addExerciseRepsField"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:ems="10"-->
-<!--                    android:hint="@string/exercise_reps_hint"-->
-<!--                    android:text='@{exercise.name != null ? String.valueOf(exercise.reps): ""}'-->
-<!--                    android:inputType="number"-->
-<!--                     />-->
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
-
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
-                android:id="@+id/addExerciseIntervalFieldLayout"
+                android:id="@+id/addExerciseRepsFieldLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/fab_margin"
-                app:layout_constraintEnd_toEndOf="@+id/repsSlider"
-                app:layout_constraintStart_toStartOf="@+id/repsSlider"
-                app:layout_constraintTop_toBottomOf="@+id/repsSlider">
+                app:layout_constraintEnd_toEndOf="@+id/addExerciseNameFieldLayout"
+                app:layout_constraintStart_toStartOf="@+id/addExerciseNameFieldLayout"
+                app:layout_constraintTop_toBottomOf="@+id/addExerciseNameFieldLayout">
                 <EditText
-                    android:id="@+id/addExerciseIntervalField"
+                    android:id="@+id/addExerciseRepsField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="Interval"
-                    android:text='@{exercise.name != null ? String.valueOf(exercise.interval): ""}'
+                    android:hint="@string/exercise_reps_hint"
+                    android:text='@{exercise.name != null ? String.valueOf(exercise.reps): ""}'
                     android:inputType="number"
                      />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/intervalSliderText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Interval (Between reps)"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addExerciseRepsFieldLayout" />
 
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/intervalSlider"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:value='@{exercise.name != null ? Float.valueOf(exercise.interval): Float.valueOf(5)}'
+                android:valueFrom="0"
+                android:valueTo="10"
+                android:stepSize="1"
+                app:floatingLabel="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/intervalSliderText"/>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                android:id="@+id/addExerciseSetsFieldLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/fab_margin"
+                app:layout_constraintEnd_toEndOf="@+id/intervalSlider"
+                app:layout_constraintStart_toStartOf="@+id/intervalSlider"
+                app:layout_constraintTop_toBottomOf="@+id/intervalSlider">
             <EditText
                 android:id="@+id/addExerciseSetsField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/fab_margin"
                 android:ems="10"
                 android:hint="@string/exercise_sets_hint"
                 android:text='@{exercise.name != null ? String.valueOf(exercise.sets): ""}'
                 android:inputType="number"
-                app:layout_constraintEnd_toEndOf="@+id/addExerciseIntervalFieldLayout"
-                app:layout_constraintStart_toStartOf="@+id/addExerciseIntervalFieldLayout"
-                app:layout_constraintTop_toBottomOf="@+id/addExerciseIntervalFieldLayout" />
+                />
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <EditText
-                android:id="@+id/addExerciseSetBreakField"
+
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/setBreakSliderText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Break (Between sets)"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/addExerciseSetsFieldLayout" />
+
+
+            <com.google.android.material.slider.Slider
+                android:id="@+id/setBreakSlider"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/fab_margin"
-                android:ems="10"
-                android:hint="Set Break"
-                android:text='@{exercise.name != null ? String.valueOf(exercise.setBreak): ""}'
-                android:inputType="number"
-                app:layout_constraintEnd_toEndOf="@+id/addExerciseSetsField"
-                app:layout_constraintStart_toStartOf="@+id/addExerciseSetsField"
-                app:layout_constraintTop_toBottomOf="@+id/addExerciseSetsField" />
-
+                android:value='@{exercise.name != null ? Float.valueOf(exercise.setBreak): Float.valueOf(5)}'
+                android:valueFrom="0"
+                android:valueTo="60"
+                android:stepSize="1"
+                app:floatingLabel="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/setBreakSliderText"/>
 
             <Button
                 android:id="@+id/add_exercise_button"
@@ -158,11 +159,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="Done"
-                app:layout_constraintEnd_toEndOf="@+id/addExerciseSetBreakField"
-                app:layout_constraintTop_toBottomOf="@id/addExerciseSetBreakField" />
-
-
-
+                app:layout_constraintEnd_toEndOf="@+id/setBreakSlider"
+                app:layout_constraintTop_toBottomOf="@id/setBreakSlider" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
