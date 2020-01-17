@@ -24,13 +24,13 @@ public class AddExerciseActivity extends AppCompatActivity {
         if(getIntent().getExtras() != null) {
             isUpdating=true;
             int exerciseId = getIntent().getExtras().getInt("exerciseId");
-            Log.d("Rossi","Id is:" + exerciseId);
             new SelectExerciseTask(exerciseId, this, binding).execute();;
         }else{
             isUpdating=false;
         }
 
 
+        //Update or create
         binding.addExerciseButton.setOnClickListener((view) -> {
             String exerciseNameFieldContent = binding.addExerciseNameField.getText().toString().trim();
             int exerciseRepsFieldContent = Integer.parseInt(binding.addExerciseRepsField.getText().toString().trim());
@@ -38,16 +38,15 @@ public class AddExerciseActivity extends AppCompatActivity {
             int exerciseSetsFieldContent = Integer.parseInt(binding.addExerciseSetsField.getText().toString().trim());
             int exerciseSetBreakFieldContent =  Math.round(binding.setBreakSlider.getValue());
 
+            //Choose whether to update or create
             if (!exerciseNameFieldContent.isEmpty()) {
                 if(isUpdating){
-                    Log.d("Rossi","Exercise is:" + binding.getExercise().getId() + " : " + binding.getExercise().getName());
                     Exercise exercise=binding.getExercise();
                     exercise.setName(exerciseNameFieldContent);
                     exercise.setReps(exerciseRepsFieldContent);
                     exercise.setInterval(exerciseIntervalFieldContent);
                     exercise.setSets(exerciseSetsFieldContent);
                     exercise.setSetBreak(exerciseSetBreakFieldContent);
-
                     new UpdateExerciseTask(binding.getExercise()).execute();
                     finish();
                 }else {
@@ -76,7 +75,6 @@ public class AddExerciseActivity extends AppCompatActivity {
         @Override
         protected Void doInBackground(Void... voids) {
             exercise = ExerciseDatabase.getInstance(context).exerciseDAO().findExerciseById(id);
-            Log.d("Rossi","Exercise is:" + exercise);
             binding.setExercise(exercise);
          return null;
         }

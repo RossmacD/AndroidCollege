@@ -36,12 +36,6 @@ public class MainActivity extends AppCompatActivity {
         // Populate the Database.
         DatabaseInitializer.populateAsync(ExerciseDatabase.getInstance(getApplicationContext()));
 
-        // Set the layout and add toolbar
-//        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-//        setSupportActionBar(binding.toolbar);
-
-
-
     }
 
 }

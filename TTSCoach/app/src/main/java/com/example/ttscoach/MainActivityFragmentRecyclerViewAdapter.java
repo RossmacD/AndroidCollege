@@ -86,6 +86,7 @@ public class MainActivityFragmentRecyclerViewAdapter extends RecyclerView.Adapte
             );
 
 
+            //Set text
             String exerciseName = exercise.getName();
             int exerciseReps= exercise.getReps();
             int exerciseInterval= exercise.getInterval();

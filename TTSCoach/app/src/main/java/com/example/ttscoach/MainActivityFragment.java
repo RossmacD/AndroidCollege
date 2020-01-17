@@ -41,7 +41,7 @@ public class MainActivityFragment extends Fragment {
                 }
         );
 
-        //
+        //Set viewmodel
         ExercisesViewModel viewModel = ViewModelProviders.of(this).get(ExercisesViewModel.class);
         //Live Data is shown in the fragment - it updates the ui if the database is updated
         viewModel.getExercise().observe(MainActivityFragment.this, recyclerViewAdapter::setExercises);
