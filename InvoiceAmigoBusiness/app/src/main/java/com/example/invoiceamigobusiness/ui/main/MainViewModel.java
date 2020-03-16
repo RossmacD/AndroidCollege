@@ -3,10 +3,11 @@ package com.example.invoiceamigobusiness.ui.main;
 import androidx.lifecycle.ViewModel;
 
 import com.example.invoiceamigobusiness.Repository;
+import com.example.invoiceamigobusiness.databinding.MainFragmentBinding;
 
 
 public class MainViewModel extends ViewModel {
-    public void login(){
-        Repository.getInstance().executeLogin("ultan.on98@gmail.com","secret");
+    public void login(MainFragmentBinding mainFragmentBinding) {
+        Repository.getInstance().executeLogin(mainFragmentBinding.email.getText().toString() , mainFragmentBinding.password.getText().toString());
     }
 }

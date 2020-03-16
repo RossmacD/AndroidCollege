@@ -1,6 +1,7 @@
 package com.example.invoiceamigobusiness.ui.main;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
@@ -26,22 +27,19 @@ public class MainFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //Inflate for AndroidX DataBinding
         mainFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false);
-        mViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        //Create ViewModelProvider
+        mViewModel =new ViewModelProvider(this).get(MainViewModel.class);
+
+        //Login button listener - pass bindings  to view model to handle/read from UI
         mainFragmentBinding.setOnClickListener(view -> {
-            mViewModel.login();
+            mViewModel.login(mainFragmentBinding);
         });
 
         return mainFragmentBinding.getRoot();
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        // TODO: Use the ViewModel
-    }
 
 }

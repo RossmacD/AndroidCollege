@@ -1,11 +1,39 @@
 package com.example.invoiceamigobusiness.network.model;
 
+import android.util.Log;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class User {
+    @SerializedName("id")
+    @Expose
     private int id;
+
+    @SerializedName("email")
+    @Expose
     private String email;
+
+    @SerializedName("name")
+    @Expose
     private String name;
+
+    @SerializedName("token")
+    @Expose
     private String token;
 
+//    @SerializedName("business")
+//    @Expose
+//    private Business business;
+
+
+    public User(int id, String email, String name, String token) {
+        this.id = id;
+        this.email = email;
+        this.name = name;
+        this.token = token;
+        Log.d("Ross","DOWLER");
+    }
 
     //Getters and setters
     public int getId() {
@@ -39,4 +67,6 @@ public class User {
     public void setToken(String token) {
         this.token = token;
     }
+
+
 }

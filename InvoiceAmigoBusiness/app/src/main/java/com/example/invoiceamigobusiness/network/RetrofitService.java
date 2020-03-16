@@ -1,14 +1,12 @@
 package com.example.invoiceamigobusiness.network;
 
-import com.example.invoiceamigobusiness.network.auth.AuthApi;
+import android.util.Log;
 
-import java.io.IOException;
-
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.Response;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitService {
@@ -33,10 +31,12 @@ public class RetrofitService {
             Request request = chain.request().newBuilder().addHeader("Authorization", authToken).build();
             return chain.proceed(request);
         });
-
+        httpClient.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
+        Log.d("Ross","new retrofit");
         retrofit=new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(httpClient.build())
                 .build();
     }
