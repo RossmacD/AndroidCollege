@@ -19,14 +19,13 @@ public class UserDeserializer implements JsonDeserializer<User> {
     public User deserialize(JsonElement je, Type type, JsonDeserializationContext jdc)
             throws JsonParseException
     {
-        Log.d("Ross","haaaaa ");
-        // Get the "user" element from the parsed JSON
-        JsonElement content=je.getAsJsonObject();
+        // Get the "user" element from the parsed JSON if it exists
+        JsonElement content;
         if (je.getAsJsonObject().has("user")) {
             content = je.getAsJsonObject().get("user");
+        }else{
+            content=je.getAsJsonObject();
         }
-
-
 
         // Deserialize it. You use a new instance of Gson to avoid infinite recursion
         // to this deserializer

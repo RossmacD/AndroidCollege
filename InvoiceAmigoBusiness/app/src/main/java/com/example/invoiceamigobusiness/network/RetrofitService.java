@@ -18,8 +18,10 @@ public class RetrofitService {
     private static final String BASE_URL ="http://10.0.2.2:8000/api/";
     private static String authToken;
     private static Gson gson =new GsonBuilder().registerTypeAdapter(User.class,new UserDeserializer()).create();
+
     private static Retrofit retrofit= new Retrofit.Builder()
             .baseUrl(BASE_URL)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build();
 

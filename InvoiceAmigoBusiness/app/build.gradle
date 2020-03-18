@@ -48,8 +48,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
 
     //rxJava
-    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
-    implementation 'io.reactivex.rxjava3:rxjava:3.0.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
 
     //Adapters for rxJava
     implementation 'android.arch.persistence.room:rxjava2:1.1.1'

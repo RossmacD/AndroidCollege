@@ -32,6 +32,7 @@ public class MainFragment extends Fragment {
         mainFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false);
         //Create ViewModelProvider
         mViewModel =new ViewModelProvider(this).get(MainViewModel.class);
+        mainFragmentBinding.setLoading(false);
 
         //Login button listener - pass bindings  to view model to handle/read from UI
         mainFragmentBinding.setOnClickListener(view -> {
