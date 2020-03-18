@@ -2,9 +2,19 @@ package com.example.invoiceamigobusiness.network.model;
 
 import android.util.Log;
 
+import com.example.invoiceamigobusiness.network.deserializer.UserDeserializer;
+import com.google.gson.Gson;
+import com.google.gson.JsonDeserializationContext;
+import com.google.gson.JsonDeserializer;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParseException;
 import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 
+import java.lang.reflect.Type;
+
+//@JsonAdapter(UserDeserializer.class)
 public class User {
     @SerializedName("id")
     @Expose
@@ -70,3 +80,5 @@ public class User {
 
 
 }
+
+

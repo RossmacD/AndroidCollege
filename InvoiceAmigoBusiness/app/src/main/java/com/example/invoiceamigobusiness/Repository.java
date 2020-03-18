@@ -104,25 +104,5 @@ public class Repository {
                     }
                 }
         );
-
-//        Single<Response<User>> userObserver = userApi.getUser();
-//        userObserver.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
-//                new SingleObserver<Response<User>>() {
-//                    @Override
-//                    public void onSubscribe(@NonNull Disposable d) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onSuccess(@NonNull Response<User> userResponse) {
-//                        Log.d("Ross","complete" + userResponse.body());
-//                    }
-//
-//                    @Override
-//                    public void onError(@NonNull Throwable e) {
-//
-//                    }
-//                }
-//        );
     }
 }
