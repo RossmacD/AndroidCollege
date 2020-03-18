@@ -14,7 +14,6 @@ import com.google.gson.annotations.SerializedName;
 
 import java.lang.reflect.Type;
 
-//@JsonAdapter(UserDeserializer.class)
 public class User {
     @SerializedName("id")
     @Expose
@@ -35,14 +34,11 @@ public class User {
 //    @SerializedName("business")
 //    @Expose
 //    private Business business;
-
-
     public User(int id, String email, String name, String token) {
         this.id = id;
         this.email = email;
         this.name = name;
         this.token = token;
-        Log.d("Ross","DOWLER");
     }
 
     //Getters and setters

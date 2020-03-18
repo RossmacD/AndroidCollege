@@ -26,71 +26,30 @@ public class Repository {
     //Add an instance of the retrofit service to the singleton
     private AuthApi authApi;
     private UserApi userApi;
-    public Repository(){
+    private Repository(){
         rebuild();
     }
 
     //Rebuild Retrofit
-    private void rebuild(){
+    public void rebuild(){
         authApi= RetrofitService.createService(AuthApi.class);
         userApi= RetrofitService.createService(UserApi.class);
     }
 
     /**
      * Login - Add authorisation token to future retrofit headers
-     * @param email - User Email
-     * @param password - User password
-     *
+     * @param login - an instance of the login model - contains username and password
      * @response - Api responds with email, name and Auth token
      */
-    public void executeLogin(String email, String password) {
-        Login login=new Login("ultan.on98@gmail.com","secret");
-        authApi.login(login).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
-                new DisposableSingleObserver<Response<User>>() {
-                    @Override
-                    public void onSuccess(Response<User> userResponse) {
-                        Log.d("RossLog",userResponse.body().getToken());
-                        //Add Bearer token to header
-                        RetrofitService.addAuthToken("Bearer " + userResponse.body().getToken());
-                        //Rebuild to update intercepters and callback factories
-                        rebuild();
-                        //Get user with authentication token
-                        executeGetUser();
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d("RossLog","Login Fail: Error!",e);
-                    }
-                }
-        );
-
-
+    public Single executeLogin(Login login) {
+        return authApi.login(login).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
     /**
      * Get user - Uses rxAndroid to retrieve user asynchronously with retrofit
      *
      */
-    private void executeGetUser()  {
-        Log.d("Ross","Adding observable");
-        userApi.getUser().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(
-                new DisposableSingleObserver<Response<User>>() {
-                    @Override
-                    public void onSuccess(Response<User> userResponse) {
-                        Log.d("Ross","complete " + userResponse.body().getName());
-                        //Save Json object as a file to reread later
-//                        try {
-//                            new Gson().toJson(userResponse.body(),new FileWriter("currentUser"));
-//                        } catch (IOException e) {
-//                            e.printStackTrace();
-//                        }
-                    }
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d("RossLog","Get User Fail: Error!",e);
-                    }
-                }
-        );
+    public Single executeGetUser()  {
+       return userApi.getUser().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 }

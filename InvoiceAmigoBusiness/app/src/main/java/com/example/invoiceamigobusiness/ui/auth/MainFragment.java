@@ -1,8 +1,7 @@
-package com.example.invoiceamigobusiness.ui.main;
+package com.example.invoiceamigobusiness.ui.auth;
 
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 
@@ -13,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.example.invoiceamigobusiness.R;
 import com.example.invoiceamigobusiness.databinding.MainFragmentBinding;
@@ -36,7 +34,7 @@ public class MainFragment extends Fragment {
 
         //Login button listener - pass bindings  to view model to handle/read from UI
         mainFragmentBinding.setOnClickListener(view -> {
-            mViewModel.login(mainFragmentBinding);
+            mViewModel.login(mainFragmentBinding, getActivity());
         });
 
         return mainFragmentBinding.getRoot();
