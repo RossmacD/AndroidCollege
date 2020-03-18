@@ -71,4 +71,12 @@ public class Business {
     public void setPostcode(String postcode) {
         this.postcode = postcode;
     }
+
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
 }

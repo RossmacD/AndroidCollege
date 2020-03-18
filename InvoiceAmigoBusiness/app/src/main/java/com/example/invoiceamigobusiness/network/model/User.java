@@ -31,14 +31,15 @@ public class User {
     @Expose
     private String token;
 
-//    @SerializedName("business")
-//    @Expose
-//    private Business business;
-    public User(int id, String email, String name, String token) {
+    @SerializedName("business")
+    @Expose
+    private Business business;
+    public User(int id, String email, String name, String token,Business business) {
         this.id = id;
         this.email = email;
         this.name = name;
         this.token = token;
+        this.business = business;
     }
 
     //Getters and setters
@@ -74,7 +75,13 @@ public class User {
         this.token = token;
     }
 
+    public Business getBusiness() {
+        return business;
+    }
 
+    public void setBusiness(Business business) {
+        this.business = business;
+    }
 }
 
 

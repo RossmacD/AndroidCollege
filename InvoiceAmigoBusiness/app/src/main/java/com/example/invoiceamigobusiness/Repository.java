@@ -1,18 +1,12 @@
 package com.example.invoiceamigobusiness;
 
-import android.util.Log;
-
 import com.example.invoiceamigobusiness.network.RetrofitService;
 import com.example.invoiceamigobusiness.network.auth.AuthApi;
 import com.example.invoiceamigobusiness.network.auth.UserApi;
 import com.example.invoiceamigobusiness.network.model.Login;
-import com.example.invoiceamigobusiness.network.model.User;
-
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
-import retrofit2.Response;
 
 public class Repository {
     //Turn repository into singleton - prevent multiple builds of retrofit etc....
@@ -46,8 +40,8 @@ public class Repository {
     }
 
     /**
-     * Get user - Uses rxAndroid to retrieve user asynchronously with retrofit
      *
+     * @return returns a rxAndroid single -
      */
     public Single executeGetUser()  {
        return userApi.getUser().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());

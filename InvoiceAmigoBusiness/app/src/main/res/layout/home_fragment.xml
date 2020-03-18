@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
+        <import type="com.example.invoiceamigobusiness.network.model.Business"/>
         <variable
             name="user"
             type="com.example.invoiceamigobusiness.network.model.User"/>
@@ -46,6 +47,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/userName" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/businessName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{"Business Name: "+user.business.businessName}'
+            style="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/userEmail" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

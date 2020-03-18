@@ -3,6 +3,7 @@ package com.example.invoiceamigobusiness.ui.auth;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.View;
 
 import androidx.lifecycle.ViewModel;
 
@@ -18,8 +19,12 @@ import io.reactivex.observers.DisposableSingleObserver;
 import retrofit2.Response;
 
 public class MainViewModel extends ViewModel {
+    public interface LoginListener {
+        public void onLogin();
+    }
+
     //TODO remove contexrt
-    public void login(MainFragmentBinding mainFragmentBinding, Context context) {
+    public void login(MainFragmentBinding mainFragmentBinding, LoginListener loginListener) {
         //Show Loading state in UI
         mainFragmentBinding.setLoading(true);
 //        mainFragmentBinding.email.getText().toString() , mainFragmentBinding.password.getText().toString())
@@ -28,13 +33,12 @@ public class MainViewModel extends ViewModel {
                 new DisposableSingleObserver<Response<User>>() {
                     @Override
                     public void onSuccess(Response<User> userResponse) {
-                        Log.d("RossLog",userResponse.body().getToken());
+//                        Log.d("RossLog",userResponse.body().getToken());
                         //Add Bearer token to header
                         RetrofitService.addAuthToken("Bearer " + userResponse.body().getToken());
                         //Rebuild to update intercepters and callback factories
                         Repository.getInstance().rebuild();
-                        Intent intent = new Intent(context, HomeActivity.class);
-                        context.startActivity(intent);
+                        loginListener.onLogin();
                     }
 
                     @Override

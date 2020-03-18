@@ -3,6 +3,7 @@ package com.example.invoiceamigobusiness.ui.auth;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,10 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.invoiceamigobusiness.HomeActivity;
 import com.example.invoiceamigobusiness.R;
 import com.example.invoiceamigobusiness.databinding.MainFragmentBinding;
 
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements MainViewModel.LoginListener{
     private MainViewModel mViewModel;
     public static MainFragment newInstance() {
         return new MainFragment();
@@ -34,11 +36,16 @@ public class MainFragment extends Fragment {
 
         //Login button listener - pass bindings  to view model to handle/read from UI
         mainFragmentBinding.setOnClickListener(view -> {
-            mViewModel.login(mainFragmentBinding, getActivity());
+            mViewModel.login(mainFragmentBinding, this);
         });
 
         return mainFragmentBinding.getRoot();
     }
 
 
+    @Override
+    public void onLogin() {
+        Intent intent = new Intent(getActivity(), HomeActivity.class);
+        getActivity().startActivity(intent);
+    }
 }
