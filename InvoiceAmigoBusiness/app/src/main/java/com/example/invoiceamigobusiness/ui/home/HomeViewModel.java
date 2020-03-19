@@ -48,8 +48,20 @@ public class HomeViewModel extends ViewModel {
                     public void onSuccess(Response<Dash> dashResponse) {
                         Log.d("Ross","recieved the dash");
                         homeFragmentBinding.setDashStats(dashResponse.body());
-                        ArrayList<DataPoint> dataPoints = new ArrayList<>();
-                        homeFragmentBinding.barChart.drawBars(dataPoints, new Frame(100,100,100,100));
+                        //Busness logic for charts
+                        int paidVal = dashResponse.body().getPaidCount();
+                        int unseenVal = dashResponse.body().getUnseenCount();
+                        //Convert Val for graph
+                        if(paidVal > unseenVal){
+                            paidVal=100;
+                            unseenVal= (int) Math.ceil((unseenVal/paidVal)*100);
+                        }else{
+                            unseenVal=100;
+                            paidVal= (int) Math.ceil((paidVal/unseenVal)*100);
+                            //Update Order
+                        }
+                        homeFragmentBinding.progressBar.setProgress(paidVal);
+                        homeFragmentBinding.progressBar2.setProgress(unseenVal);
                     }
 
                     @Override
