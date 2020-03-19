@@ -20,10 +20,9 @@ import retrofit2.Response;
 
 public class MainViewModel extends ViewModel {
     public interface LoginListener {
-        public void onLogin();
+        public void onLogin(Boolean success);
     }
 
-    //TODO remove contexrt
     public void login(MainFragmentBinding mainFragmentBinding, LoginListener loginListener) {
         //Show Loading state in UI
         mainFragmentBinding.setLoading(true);
@@ -33,18 +32,17 @@ public class MainViewModel extends ViewModel {
                 new DisposableSingleObserver<Response<User>>() {
                     @Override
                     public void onSuccess(Response<User> userResponse) {
-//                        Log.d("RossLog",userResponse.body().getToken());
+
                         //Add Bearer token to header
                         RetrofitService.addAuthToken("Bearer " + userResponse.body().getToken());
                         //Rebuild to update intercepters and callback factories
                         Repository.getInstance().rebuild();
-                        loginListener.onLogin();
+                        loginListener.onLogin(true);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d("RossLog","Login Fail: Error!",e);
-                        mainFragmentBinding.setLoading(false);
+                        loginListener.onLogin(false);
                     }
                 }
         );

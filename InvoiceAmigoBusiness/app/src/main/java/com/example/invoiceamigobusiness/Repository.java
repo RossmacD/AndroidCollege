@@ -2,6 +2,7 @@ package com.example.invoiceamigobusiness;
 
 import com.example.invoiceamigobusiness.network.RetrofitService;
 import com.example.invoiceamigobusiness.network.auth.AuthApi;
+import com.example.invoiceamigobusiness.network.auth.DashApi;
 import com.example.invoiceamigobusiness.network.auth.UserApi;
 import com.example.invoiceamigobusiness.network.model.Login;
 import io.reactivex.Single;
@@ -20,6 +21,7 @@ public class Repository {
     //Add an instance of the retrofit service to the singleton
     private AuthApi authApi;
     private UserApi userApi;
+    private DashApi dashApi;
     private Repository(){
         rebuild();
     }
@@ -28,6 +30,7 @@ public class Repository {
     public void rebuild(){
         authApi= RetrofitService.createService(AuthApi.class);
         userApi= RetrofitService.createService(UserApi.class);
+        dashApi=RetrofitService.createService(DashApi.class);
     }
 
     /**
@@ -39,11 +42,11 @@ public class Repository {
         return authApi.login(login).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
-    /**
-     *
-     * @return returns a rxAndroid single -
-     */
     public Single executeGetUser()  {
        return userApi.getUser().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single executeGetDash(){
+        return dashApi.getDash().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 }

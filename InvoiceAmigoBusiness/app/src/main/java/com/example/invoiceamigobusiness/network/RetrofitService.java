@@ -17,6 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RetrofitService {
     private static final String BASE_URL ="http://10.0.2.2:8000/api/";
     private static String authToken;
+    private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
     private static Gson gson =new GsonBuilder().registerTypeAdapter(User.class,new UserDeserializer()).create();
 
     private static Retrofit retrofit= new Retrofit.Builder()
@@ -35,9 +36,16 @@ public class RetrofitService {
      */
     public static void addAuthToken(String _authToken){
         authToken=_authToken;
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(chain -> {
             Request request = chain.request().newBuilder().addHeader("Authorization", authToken).build();
+            return chain.proceed(request);
+        });
+        httpClient.addInterceptor(chain -> {
+            Request request = chain.request().newBuilder().addHeader("Accept", "application/json").build();
+            return chain.proceed(request);
+        });
+        httpClient.addInterceptor(chain -> {
+            Request request = chain.request().newBuilder().addHeader("Content-Type", "application/json").build();
             return chain.proceed(request);
         });
         httpClient.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));

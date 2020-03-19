@@ -44,8 +44,12 @@ public class MainFragment extends Fragment implements MainViewModel.LoginListene
 
 
     @Override
-    public void onLogin() {
-        Intent intent = new Intent(getActivity(), HomeActivity.class);
-        getActivity().startActivity(intent);
+    public void onLogin(Boolean success) {
+        if(success){
+            Intent intent = new Intent(getActivity(), HomeActivity.class);
+            getActivity().startActivity(intent);
+        }else{
+            mainFragmentBinding.setLoading(false);
+        }
     }
 }

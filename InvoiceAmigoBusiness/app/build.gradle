@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.invoiceamigobusiness"
-        minSdkVersion 14
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -67,5 +67,10 @@ dependencies {
 
     //Material UI
     implementation 'com.google.android.material:material:1.2.0-alpha05'
+
+    //Graph Library
+    implementation 'com.diogobernardino:williamchart:3.3.0'
+
+
 
 }
