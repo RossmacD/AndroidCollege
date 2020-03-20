@@ -1,9 +1,9 @@
 package com.example.invoiceamigobusiness;
 
 import com.example.invoiceamigobusiness.network.RetrofitService;
-import com.example.invoiceamigobusiness.network.auth.AuthApi;
-import com.example.invoiceamigobusiness.network.auth.DashApi;
-import com.example.invoiceamigobusiness.network.auth.UserApi;
+import com.example.invoiceamigobusiness.network.api.AuthApi;
+import com.example.invoiceamigobusiness.network.api.DashApi;
+import com.example.invoiceamigobusiness.network.api.UserApi;
 import com.example.invoiceamigobusiness.network.model.Login;
 import io.reactivex.Single;
 import io.reactivex.android.schedulers.AndroidSchedulers;

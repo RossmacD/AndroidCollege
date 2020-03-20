@@ -1,4 +1,4 @@
-package com.example.invoiceamigobusiness.network.auth;
+package com.example.invoiceamigobusiness.network.api;
 
 import com.example.invoiceamigobusiness.network.model.User;
 
