@@ -36,7 +36,24 @@
             android:layout_height="wrap_content"
             android:visibility="@{loading?View.GONE:View.VISIBLE}"
             >
-
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weekly Sales"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@id/graphLabel"/>
+            <com.robinhood.spark.SparkView
+                android:id="@+id/sparkview"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/graphLabel"
+                app:spark_lineColor="@color/positive"
+                app:spark_lineWidth="4dp"
+                app:spark_fill="true"
+                app:spark_animateChanges="true"/>
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/userName"
                 android:layout_width="wrap_content"
@@ -45,7 +62,7 @@
                 android:lines="2"
                 app:layout_constraintStart_toStartOf="parent"
                 style="@style/TextAppearance.AppCompat.Display1"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/sparkview" />
 
 
             <com.google.android.material.textview.MaterialTextView
@@ -183,6 +200,7 @@
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="0dp"
                         android:scaleY="8"
+                        android:progressTint="@color/colorAccentLight"
                         android:layout_height="45dp"
                         android:progress="0"
                         />

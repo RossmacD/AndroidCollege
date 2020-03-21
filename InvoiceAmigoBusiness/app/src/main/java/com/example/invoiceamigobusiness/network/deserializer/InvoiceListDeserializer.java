@@ -35,7 +35,7 @@ public class InvoiceListDeserializer implements JsonDeserializer<List<Invoice>> 
         if (je.getAsJsonObject().has("outgoingInvoices")) {
             content = je.getAsJsonObject().get("outgoingInvoices").getAsJsonObject().get("data");
             for(JsonElement invoicesJsonElement : content.getAsJsonArray()){
-                Log.d("Ross", "deserialize: "+invoicesJsonElement.getAsJsonObject());
+                //Deserialize each invoice as normal in array
                 invoices.add(new Gson().fromJson(invoicesJsonElement.getAsJsonObject(), Invoice.class));
             }
         }

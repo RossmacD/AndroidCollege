@@ -39,9 +39,11 @@
                 android:id="@+id/status"
                 style="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="#FFF"
-                android:background='@{invoice.status=="paid"? @color/positive :@color/negative}'
-                android:padding="4dp"
-                android:text='@{invoice.status=="paid"?"Paid":"Unpaid"}'
+                android:background="@drawable/rounded_badge"
+                android:backgroundTint='@{invoice.status.equals("paid")? @color/positive :@color/negative}'
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="8dp"
+                android:text='@{invoice.status.equals("paid")?"Paid":"Unpaid"}'
                 />
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"

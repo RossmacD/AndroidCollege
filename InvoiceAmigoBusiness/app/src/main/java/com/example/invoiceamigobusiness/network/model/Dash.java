@@ -24,13 +24,18 @@ public class Dash {
     @Expose
     private int unseenCount;
 
+    @SerializedName("yData")
+    @Expose
+    private float[] yData;
 
-    public Dash(int invoicesCreated, int totalIncome, int totalOutstanding, int paidCount, int unseenCount) {
+
+    public Dash(int invoicesCreated, int totalIncome, int totalOutstanding, int paidCount, int unseenCount,float[] yData) {
         this.invoicesCreated = invoicesCreated;
         this.totalIncome = totalIncome;
         this.totalOutstanding = totalOutstanding;
         this.paidCount = paidCount;
         this.unseenCount = unseenCount;
+        this.yData = yData;
     }
 
     public int getInvoicesCreated() {
@@ -71,5 +76,13 @@ public class Dash {
 
     public void setUnseenCount(int unseenCount) {
         this.unseenCount = unseenCount;
+    }
+
+    public float[] getyData() {
+        return yData;
+    }
+
+    public void setyData(float[] yData) {
+        this.yData = yData;
     }
 }

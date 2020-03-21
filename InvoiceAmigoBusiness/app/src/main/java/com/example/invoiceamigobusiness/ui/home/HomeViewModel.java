@@ -4,8 +4,7 @@ import android.util.Log;
 
 import androidx.lifecycle.ViewModel;
 
-import com.db.williamchart.data.DataPoint;
-import com.db.williamchart.data.Frame;
+
 import com.example.invoiceamigobusiness.Repository;
 import com.example.invoiceamigobusiness.databinding.HomeFragmentBinding;
 import com.example.invoiceamigobusiness.network.model.Dash;
@@ -34,10 +33,11 @@ public class HomeViewModel extends ViewModel {
                         //Pass User to the frontend
                         homeFragmentBinding.setUser(userResponse.body());
                         homeFragmentBinding.setLoading(false);
+
                     }
                     @Override
                     public void onError(Throwable e) {
-                        Log.d("RossLog","Get User Fail: Error!",e);
+                        Log.e("RossLog","Get User Fail: Error!",e);
                     }
                 }
         );
@@ -47,19 +47,20 @@ public class HomeViewModel extends ViewModel {
                 new DisposableSingleObserver<Response<Dash>>() {
                     @Override
                     public void onSuccess(Response<Dash> dashResponse) {
-                        Log.d("Ross","recieved the dash");
                         homeFragmentBinding.setDashStats(dashResponse.body());
+                        float[] yData =dashResponse.body().getyData();
+                        homeFragmentBinding.sparkview.setAdapter(new SparkViewAdapter(yData));
                         //Busness logic for charts
                         int paidVal = dashResponse.body().getPaidCount();
                         int unseenVal = dashResponse.body().getUnseenCount();
                         //Convert Val for graph
                         if(paidVal > unseenVal){
-                            paidVal=100;
                             unseenVal= (int) Math.ceil((unseenVal/paidVal)*100);
+                            paidVal=100;
+
                         }else{
+                            paidVal= paidVal * 100 / unseenVal;
                             unseenVal=100;
-                            paidVal= (int) Math.ceil((paidVal/unseenVal)*100);
-                            //Update Order
                         }
                         homeFragmentBinding.progressBar.setProgress(paidVal);
                         homeFragmentBinding.progressBar2.setProgress(unseenVal);
@@ -67,7 +68,7 @@ public class HomeViewModel extends ViewModel {
 
                     @Override
                     public void onError(Throwable e)  {
-                        Log.d("RossLog","Get User Fail: Error!",e);
+                        Log.e("RossLog","Get User Fail: Error!",e);
                     }
                 }
         );
