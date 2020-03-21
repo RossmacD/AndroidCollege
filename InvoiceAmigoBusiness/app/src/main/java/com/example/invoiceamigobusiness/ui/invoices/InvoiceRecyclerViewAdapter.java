@@ -29,6 +29,8 @@ public class InvoiceRecyclerViewAdapter extends RecyclerView.Adapter<InvoiceRecy
     @Override
     public void onBindViewHolder(@NonNull InvoiceViewHolder holder, int position) {
         Invoice currentInvoice = invoices.get(position);
+        holder.bind(currentInvoice);
+
     }
 
     @Override
@@ -50,6 +52,10 @@ public class InvoiceRecyclerViewAdapter extends RecyclerView.Adapter<InvoiceRecy
         public InvoiceViewHolder(@NonNull InvoiceRecyclerItemBinding invoiceRecyclerItemBinding) {
             super(invoiceRecyclerItemBinding.getRoot());
             this.invoiceRecyclerItemBinding = invoiceRecyclerItemBinding;
+        }
+        void bind(Invoice invoice){
+            invoiceRecyclerItemBinding.setInvoice(invoice);
+            invoiceRecyclerItemBinding.executePendingBindings();
         }
     }
 

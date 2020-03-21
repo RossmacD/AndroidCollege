@@ -1,5 +1,7 @@
 package com.example.invoiceamigobusiness.network.deserializer;
 
+import android.util.Log;
+
 import com.example.invoiceamigobusiness.network.model.Invoice;
 import com.example.invoiceamigobusiness.network.model.User;
 import com.google.gson.Gson;
@@ -12,6 +14,8 @@ import com.google.gson.JsonParseException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class InvoiceListDeserializer implements JsonDeserializer<List<Invoice>> {
 
@@ -30,7 +34,8 @@ public class InvoiceListDeserializer implements JsonDeserializer<List<Invoice>> 
         JsonElement content;
         if (je.getAsJsonObject().has("outgoingInvoices")) {
             content = je.getAsJsonObject().get("outgoingInvoices").getAsJsonObject().get("data");
-            for(JsonElement invoicesJsonElement:content.getAsJsonArray()){
+            for(JsonElement invoicesJsonElement : content.getAsJsonArray()){
+                Log.d("Ross", "deserialize: "+invoicesJsonElement.getAsJsonObject());
                 invoices.add(new Gson().fromJson(invoicesJsonElement.getAsJsonObject(), Invoice.class));
             }
         }
