@@ -40,14 +40,16 @@ public class RetrofitService {
 
     /**
      * Rebuild retrofit to contain auth token
-     * @param _authToken
+     * @param _authToken - The AuthToken to add as a default header
      */
     public static void addAuthToken(String _authToken){
         authToken=_authToken;
+        //Add Authorisation header
         httpClient.addInterceptor(chain -> {
             Request request = chain.request().newBuilder().addHeader("Authorization", authToken).build();
             return chain.proceed(request);
         });
+        //Add headers to send and receive JSON - filters out html, etc.. on bad request
         httpClient.addInterceptor(chain -> {
             Request request = chain.request().newBuilder().addHeader("Accept", "application/json").build();
             return chain.proceed(request);
@@ -56,9 +58,9 @@ public class RetrofitService {
             Request request = chain.request().newBuilder().addHeader("Content-Type", "application/json").build();
             return chain.proceed(request);
         });
-        httpClient.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
-        Log.d("Ross","Added Auth");
 
+        //Add Logging interceptor - use filter OkHttp to view these responses
+        httpClient.addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
         retrofit=new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())

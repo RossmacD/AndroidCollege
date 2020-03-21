@@ -33,6 +33,7 @@ public class HomeViewModel extends ViewModel {
                     public void onSuccess(Response<User> userResponse) {
                         //Pass User to the frontend
                         homeFragmentBinding.setUser(userResponse.body());
+                        homeFragmentBinding.setLoading(false);
                     }
                     @Override
                     public void onError(Throwable e) {

@@ -32,6 +32,7 @@ public class HomeFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         //Inflate for AndroidX DataBinding
         homeFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.home_fragment, container, false);
+        homeFragmentBinding.setLoading(true);
         //Create ViewModelProvider
         mViewModel =new ViewModelProvider(this).get(HomeViewModel.class);
         mViewModel.fillDash(homeFragmentBinding);

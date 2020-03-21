@@ -8,6 +8,11 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import com.example.invoiceamigobusiness.ui.home.HomeFragment;
 import com.example.invoiceamigobusiness.ui.invoices.InvoiceFragment;
 import com.google.android.material.tabs.TabLayout;
@@ -58,6 +63,32 @@ public class HomeActivity extends AppCompatActivity {
             // Otherwise, select the previous step.
             viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.actionbar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // action with ID action_refresh was selected
+            case R.id.action_refresh:
+                Toast.makeText(this, "Refreshing", Toast.LENGTH_SHORT).show();
+                //Reload activity - reruns api calls
+                finish();
+                overridePendingTransition(0, 0);
+                startActivity(getIntent());
+                overridePendingTransition(0, 0);
+                break;
+            default:
+                break;
+        }
+
+        return true;
     }
 
     /**

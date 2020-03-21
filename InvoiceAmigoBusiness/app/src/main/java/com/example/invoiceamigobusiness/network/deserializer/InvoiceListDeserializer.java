@@ -15,6 +15,15 @@ import java.util.List;
 
 public class InvoiceListDeserializer implements JsonDeserializer<List<Invoice>> {
 
+    /**
+     * Turns the received invoice API request into a list of deserialized POJOs
+     * Unwraps response.outgoingInvoices.data[]
+     *
+     * @param je - The JSON element to be deserialized
+     * @param typeOfT - The Type to deserialize
+     * @param context
+     * @return - Returns a List of deserialized invoices
+     */
     @Override
     public List<Invoice> deserialize(JsonElement je, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         List<Invoice> invoices = new ArrayList<>();
