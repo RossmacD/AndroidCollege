@@ -3,6 +3,7 @@ package com.example.invoiceamigobusiness;
 import com.example.invoiceamigobusiness.network.RetrofitService;
 import com.example.invoiceamigobusiness.network.api.AuthApi;
 import com.example.invoiceamigobusiness.network.api.DashApi;
+import com.example.invoiceamigobusiness.network.api.InvoiceApi;
 import com.example.invoiceamigobusiness.network.api.UserApi;
 import com.example.invoiceamigobusiness.network.model.Login;
 import io.reactivex.Single;
@@ -22,6 +23,7 @@ public class Repository {
     private AuthApi authApi;
     private UserApi userApi;
     private DashApi dashApi;
+    private InvoiceApi invoiceApi;
     private Repository(){
         rebuild();
     }
@@ -31,6 +33,7 @@ public class Repository {
         authApi= RetrofitService.createService(AuthApi.class);
         userApi= RetrofitService.createService(UserApi.class);
         dashApi=RetrofitService.createService(DashApi.class);
+        invoiceApi=RetrofitService.createService(InvoiceApi.class);
     }
 
     /**
@@ -48,5 +51,9 @@ public class Repository {
 
     public Single executeGetDash(){
         return dashApi.getDash().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public Single executeGetInvoices(){
+        return invoiceApi.getInvoices().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 }

@@ -2,10 +2,15 @@ package com.example.invoiceamigobusiness.network;
 
 import android.util.Log;
 
+import com.example.invoiceamigobusiness.network.deserializer.InvoiceListDeserializer;
 import com.example.invoiceamigobusiness.network.deserializer.UserDeserializer;
+import com.example.invoiceamigobusiness.network.model.Invoice;
 import com.example.invoiceamigobusiness.network.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.List;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -18,7 +23,10 @@ public class RetrofitService {
     private static final String BASE_URL ="http://10.0.2.2:8000/api/";
     private static String authToken;
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-    private static Gson gson =new GsonBuilder().registerTypeAdapter(User.class,new UserDeserializer()).create();
+    private static Gson gson =new GsonBuilder()
+            .registerTypeAdapter(User.class, new UserDeserializer())
+            .registerTypeAdapter(new TypeToken<List<Invoice>>() {}.getType(), new InvoiceListDeserializer())
+            .create();
 
     private static Retrofit retrofit= new Retrofit.Builder()
             .baseUrl(BASE_URL)

@@ -70,7 +70,7 @@
                     android:layout_marginHorizontal="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="16dp"
                     android:text='@{"Total Income: €" + dashStats.totalIncome}' />
             </androidx.cardview.widget.CardView>
 
@@ -91,7 +91,7 @@
                     android:layout_marginHorizontal="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="16dp"
                     android:text='@{"Total Outstanding: €" + dashStats.totalOutstanding}' />
             </androidx.cardview.widget.CardView>
 
@@ -112,7 +112,7 @@
                     android:layout_marginHorizontal="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="16dp"
                     android:text='@{"Invoice Created: " + dashStats.invoicesCreated}' />
             </androidx.cardview.widget.CardView>
 
