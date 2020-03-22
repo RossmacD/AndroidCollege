@@ -2,6 +2,7 @@ package com.example.invoiceamigobusiness.ui.dashboard;
 
 import com.robinhood.spark.SparkAdapter;
 
+//Sets up data for SparkView graph
 public class SparkViewAdapter extends SparkAdapter {
     private float[] yData;
 

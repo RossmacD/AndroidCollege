@@ -18,7 +18,10 @@ import retrofit2.Response;
 
 public class InvoiceViewModel extends ViewModel {
     public void getInvoices(InvoiceFragmentBinding invoiceFragmentBinding){
+        //Call to UI - get invoices
         Single invoiceResponse= Repository.getInstance().executeGetInvoices();
+
+        //Observe response on UI thread then dispose
         invoiceResponse.subscribe(
                 new DisposableSingleObserver<Response<List<Invoice>>>() {
                     @Override

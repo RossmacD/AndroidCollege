@@ -24,9 +24,11 @@ import io.reactivex.Single;
 import io.reactivex.observers.DisposableSingleObserver;
 import retrofit2.Response;
 
+
 public class NotificationService extends Service {
     private static int notificationID = 1;
     private final IBinder mBinder = new MyBinder();
+
 
 
     @Override

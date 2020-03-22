@@ -19,6 +19,7 @@ public class Repository {
         }
         return repository;
     }
+
     //Add an instance of the retrofit service to the singleton
     private AuthApi authApi;
     private UserApi userApi;
@@ -37,22 +38,34 @@ public class Repository {
     }
 
     /**
-     * Login - Add authorisation token to future retrofit headers
+     * Login - Pass login info and recieve a login token, runs on new thread but can be subscribed through on main thread
      * @param login - an instance of the login model - contains username and password
-     * @response - Api responds with email, name and Auth token
+     * @return Single - A one time observable object that will be fed the token
      */
     public Single executeLogin(Login login) {
         return authApi.login(login).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
+    /**
+     * Get User from login token, runs on new thread but can be subscribed through on main thread
+     * @return Single - A one time observable object that will be fed the user info
+     */
     public Single executeGetUser()  {
        return userApi.getUser().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
+    /**
+     * Get Dash information for user based on login token, runs on new thread but can be subscribed through on main thread
+     * @return Single - A one time observable object that will be fed the dash info
+     */
     public Single executeGetDash(){
         return dashApi.getDash().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
+    /**
+     * Get Invoices for user based on login token, runs on new thread but can be subscribed through on main thread
+     * @return Single - A one time observable object that will be fed the invoices
+     */
     public Single executeGetInvoices(){
         return invoiceApi.getInvoices().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }

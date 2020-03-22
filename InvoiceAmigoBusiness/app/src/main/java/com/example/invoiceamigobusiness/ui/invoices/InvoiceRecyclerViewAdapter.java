@@ -13,7 +13,6 @@ import java.util.List;
 
 public class InvoiceRecyclerViewAdapter extends RecyclerView.Adapter<InvoiceRecyclerViewAdapter.InvoiceViewHolder> {
     private List<Invoice> invoices;
-
     public InvoiceRecyclerViewAdapter(List<Invoice> invoices) {
         this.invoices = invoices;
     }
@@ -40,11 +39,6 @@ public class InvoiceRecyclerViewAdapter extends RecyclerView.Adapter<InvoiceRecy
         } else {
             return 0;
         }
-    }
-
-    public void setInvoiceList(List<Invoice> invoices) {
-        this.invoices = invoices;
-        notifyDataSetChanged();
     }
 
     class InvoiceViewHolder extends RecyclerView.ViewHolder {
