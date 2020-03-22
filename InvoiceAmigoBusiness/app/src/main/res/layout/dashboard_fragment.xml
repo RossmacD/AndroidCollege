@@ -20,7 +20,7 @@
         android:id="@+id/mainScrollView"
         android:visibility="@{loading?View.GONE:View.VISIBLE}"
         android:layout_height="match_parent"
-        tools:context=".ui.home.HomeFragment">
+        tools:context=".ui.dashboard.DashboardFragment">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

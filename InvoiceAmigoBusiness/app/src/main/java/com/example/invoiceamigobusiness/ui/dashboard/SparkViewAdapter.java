@@ -1,4 +1,4 @@
-package com.example.invoiceamigobusiness.ui.home;
+package com.example.invoiceamigobusiness.ui.dashboard;
 
 import com.robinhood.spark.SparkAdapter;
 

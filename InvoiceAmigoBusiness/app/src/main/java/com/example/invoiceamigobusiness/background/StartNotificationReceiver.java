@@ -13,6 +13,6 @@ public class StartNotificationReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d("Ross","REGISTERED RECIVER!!!!!!!!");
-        Util.scheduleJob(context);
+        BackgroundUtil.scheduleJob(context);
     }
 }

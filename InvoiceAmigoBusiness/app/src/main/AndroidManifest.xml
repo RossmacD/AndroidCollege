@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         >
         <activity android:name=".HomeActivity" android:label="Your Dashboard"/>
-        <activity android:name=".MainActivity" android:label="InvoiceAmigo: Business Monitor">
+        <activity android:name=".AuthActivity" android:label="InvoiceAmigo: Business Monitor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

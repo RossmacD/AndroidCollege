@@ -19,15 +19,15 @@ import android.view.ViewGroup;
 import com.example.invoiceamigobusiness.HomeActivity;
 import com.example.invoiceamigobusiness.R;
 import com.example.invoiceamigobusiness.Repository;
-import com.example.invoiceamigobusiness.databinding.MainFragmentBinding;
+import com.example.invoiceamigobusiness.databinding.LoginFragmentBinding;
 import com.example.invoiceamigobusiness.network.RetrofitService;
 
-public class MainFragment extends Fragment implements MainViewModel.LoginListener{
-    private MainViewModel mViewModel;
-    public static MainFragment newInstance() {
-        return new MainFragment();
+public class LoginFragment extends Fragment implements LoginViewModel.LoginListener{
+    private LoginViewModel mViewModel;
+    public static LoginFragment newInstance() {
+        return new LoginFragment();
     }
-    private MainFragmentBinding mainFragmentBinding;
+    private LoginFragmentBinding loginFragmentBinding;
     private SharedPreferences sharedTokenPref;
 
 
@@ -46,17 +46,17 @@ public class MainFragment extends Fragment implements MainViewModel.LoginListene
         }
 
         //Inflate for AndroidX DataBinding
-        mainFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.main_fragment, container, false);
+        loginFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.login_fragment, container, false);
         //Create ViewModelProvider
-        mViewModel =new ViewModelProvider(this).get(MainViewModel.class);
-        mainFragmentBinding.setLoading(false);
+        mViewModel =new ViewModelProvider(this).get(LoginViewModel.class);
+        loginFragmentBinding.setLoading(false);
 
         //Login button listener - pass bindings  to view model to handle/read from UI
-        mainFragmentBinding.setOnClickListener(view -> {
-            mViewModel.login(mainFragmentBinding, this);
+        loginFragmentBinding.setOnClickListener(view -> {
+            mViewModel.login(loginFragmentBinding, this);
         });
 
-        return mainFragmentBinding.getRoot();
+        return loginFragmentBinding.getRoot();
     }
 
 
@@ -70,7 +70,7 @@ public class MainFragment extends Fragment implements MainViewModel.LoginListene
             Intent intent = new Intent(getActivity(), HomeActivity.class);
             getActivity().startActivity(intent);
         }else{
-            mainFragmentBinding.setLoading(false);
+            loginFragmentBinding.setLoading(false);
         }
     }
 }

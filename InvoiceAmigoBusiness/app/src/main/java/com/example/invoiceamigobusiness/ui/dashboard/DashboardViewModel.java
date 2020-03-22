@@ -1,4 +1,4 @@
-package com.example.invoiceamigobusiness.ui.home;
+package com.example.invoiceamigobusiness.ui.dashboard;
 
 import android.util.Log;
 
@@ -6,23 +6,20 @@ import androidx.lifecycle.ViewModel;
 
 
 import com.example.invoiceamigobusiness.Repository;
-import com.example.invoiceamigobusiness.databinding.HomeFragmentBinding;
+import com.example.invoiceamigobusiness.databinding.DashboardFragmentBinding;
 import com.example.invoiceamigobusiness.network.model.Dash;
 import com.example.invoiceamigobusiness.network.model.User;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import io.reactivex.Single;
 import io.reactivex.observers.DisposableSingleObserver;
 import retrofit2.Response;
 
-public class HomeViewModel extends ViewModel {
+public class DashboardViewModel extends ViewModel {
     /**
      * Fill in XML with User, Business and stats asynchronously
-     * @param homeFragmentBinding - The databinding for the frontend
+     * @param dashboardFragmentBinding - The databinding for the frontend
      */
-    public void fillDash(HomeFragmentBinding homeFragmentBinding){
+    public void fillDash(DashboardFragmentBinding dashboardFragmentBinding){
         //Call to the API to get the User - contains the business
         Single userResponse= Repository.getInstance().executeGetUser();
         //Listen to the response and update UI when User has been filled
@@ -31,8 +28,8 @@ public class HomeViewModel extends ViewModel {
                     @Override
                     public void onSuccess(Response<User> userResponse) {
                         //Pass User to the frontend
-                        homeFragmentBinding.setUser(userResponse.body());
-                        homeFragmentBinding.setLoading(false);
+                        dashboardFragmentBinding.setUser(userResponse.body());
+                        dashboardFragmentBinding.setLoading(false);
 
                     }
                     @Override
@@ -47,9 +44,9 @@ public class HomeViewModel extends ViewModel {
                 new DisposableSingleObserver<Response<Dash>>() {
                     @Override
                     public void onSuccess(Response<Dash> dashResponse) {
-                        homeFragmentBinding.setDashStats(dashResponse.body());
+                        dashboardFragmentBinding.setDashStats(dashResponse.body());
                         float[] yData =dashResponse.body().getyData();
-                        homeFragmentBinding.sparkview.setAdapter(new SparkViewAdapter(yData));
+                        dashboardFragmentBinding.sparkview.setAdapter(new SparkViewAdapter(yData));
                         //Busness logic for charts
                         int paidVal = dashResponse.body().getPaidCount();
                         int unseenVal = dashResponse.body().getUnseenCount();
@@ -62,8 +59,8 @@ public class HomeViewModel extends ViewModel {
                             paidVal= paidVal * 100 / unseenVal;
                             unseenVal=100;
                         }
-                        homeFragmentBinding.progressBar.setProgress(paidVal);
-                        homeFragmentBinding.progressBar2.setProgress(unseenVal);
+                        dashboardFragmentBinding.progressBar.setProgress(paidVal);
+                        dashboardFragmentBinding.progressBar2.setProgress(unseenVal);
                     }
 
                     @Override

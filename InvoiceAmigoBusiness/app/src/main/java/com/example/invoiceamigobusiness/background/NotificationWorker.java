@@ -13,7 +13,6 @@ public class NotificationWorker extends Worker {
             @NonNull Context context,
             @NonNull WorkerParameters params) {
         super(context, params);
-        Log.d("Ross","Worker Constructor");
     }
 
     @NonNull
