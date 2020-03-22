@@ -10,14 +10,26 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".HomeActivity" android:label="Your Dashboard"></activity>
+        android:theme="@style/AppTheme"
+        >
+        <activity android:name=".HomeActivity" android:label="Your Dashboard"/>
         <activity android:name=".MainActivity" android:label="InvoiceAmigo: Business Monitor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name=".background.NotificationService"/>
+
+        <receiver android:name=".background.StartNotificationReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON"/>
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>

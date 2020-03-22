@@ -7,12 +7,14 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.invoiceamigobusiness.background.Util;
 import com.example.invoiceamigobusiness.ui.home.HomeFragment;
 import com.example.invoiceamigobusiness.ui.invoices.InvoiceFragment;
 import com.google.android.material.tabs.TabLayout;
@@ -27,6 +29,9 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            Util.scheduleJob(getApplicationContext());
+        }
         setContentView(R.layout.home_activity);
 //        if (savedInstanceState == null) {
 //            getSupportFragmentManager().beginTransaction()

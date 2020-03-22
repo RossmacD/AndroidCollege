@@ -2,6 +2,7 @@ package com.example.invoiceamigobusiness.ui.auth;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 
@@ -20,7 +21,7 @@ import retrofit2.Response;
 
 public class MainViewModel extends ViewModel {
     public interface LoginListener {
-        public void onLogin(Boolean success);
+        public void onLogin(Boolean success,String token);
     }
 
     public void login(MainFragmentBinding mainFragmentBinding, LoginListener loginListener) {
@@ -33,16 +34,17 @@ public class MainViewModel extends ViewModel {
                     @Override
                     public void onSuccess(Response<User> userResponse) {
 
+
                         //Add Bearer token to header
                         RetrofitService.addAuthToken("Bearer " + userResponse.body().getToken());
                         //Rebuild to update intercepters and callback factories
                         Repository.getInstance().rebuild();
-                        loginListener.onLogin(true);
+                        loginListener.onLogin(true,userResponse.body().getToken());
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        loginListener.onLogin(false);
+                        loginListener.onLogin(false,"");
                     }
                 }
         );

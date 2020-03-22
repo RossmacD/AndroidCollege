@@ -26,8 +26,12 @@ public class Invoice {
     @Expose
     private int totalCost;
 
+    @SerializedName("updated_at")
+    @Expose
+    private String updatedAt;
 
-    public Invoice(int id, int invoiceNumber, String invoiceDate, String dueDate, String status, String note, int totalCost) {
+
+    public Invoice(int id, int invoiceNumber, String invoiceDate, String dueDate, String status, String note, int totalCost,String updatedAt) {
         this.id = id;
         this.invoiceNumber = invoiceNumber;
         this.invoiceDate = invoiceDate;
@@ -35,6 +39,7 @@ public class Invoice {
         this.status = status;
         this.note = note;
         this.totalCost = totalCost;
+        this.updatedAt =updatedAt;
     }
 
     public int getId() {
@@ -91,5 +96,13 @@ public class Invoice {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public String getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(String updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
