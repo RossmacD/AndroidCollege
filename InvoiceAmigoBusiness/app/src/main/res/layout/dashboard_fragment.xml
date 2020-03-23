@@ -37,33 +37,75 @@
             android:visibility="@{loading?View.GONE:View.VISIBLE}"
             >
             <com.google.android.material.textview.MaterialTextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Weekly Sales"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:id="@id/graphLabel"/>
-            <com.robinhood.spark.SparkView
-                android:id="@+id/sparkview"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/graphLabel"
-                app:spark_lineColor="@color/positive"
-                app:spark_lineWidth="4dp"
-                app:spark_fill="true"
-                app:spark_animateChanges="true"/>
-            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/userName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text='@{"Welcome back, \n"+user.name+"!"}'
+                android:textColor="@color/offBlack"
                 android:lines="2"
                 app:layout_constraintStart_toStartOf="parent"
                 style="@style/TextAppearance.AppCompat.Display1"
-                app:layout_constraintTop_toBottomOf="@+id/sparkview" />
+                app:layout_constraintTop_toTopOf="parent" />
 
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:id="@+id/graphCard"
+                app:cardCornerRadius="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/userName" >
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:paddingTop="16dp"
+                    android:layout_marginBottom="48dp"
+                    android:paddingHorizontal="32dp">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Weekly Sales"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:id="@id/graphLabel"/>
+
+
+                    <com.robinhood.spark.SparkView
+                        android:id="@+id/sparkview"
+                        android:layout_width="0dp"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="4dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/graphLabel"
+                        app:spark_animateChanges="true"
+                        app:spark_fill="true"
+                        app:spark_lineColor="@color/positive"
+                        app:spark_lineWidth="4dp" />
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        app:layout_constraintEnd_toEndOf="@+id/sparkview"
+                        app:layout_constraintStart_toStartOf="@+id/sparkview"
+                        app:layout_constraintTop_toBottomOf="@+id/sparkview"
+                        android:background="@color/offBlack"
+                        />
+
+                    <View
+                        android:id="@+id/verticalRule"
+                        android:layout_width="1dp"
+                        android:layout_height="0dp"
+                        android:background="@color/offBlack"
+                        app:layout_constraintBottom_toBottomOf="@+id/sparkview"
+                        app:layout_constraintStart_toStartOf="@+id/sparkview"
+                        app:layout_constraintTop_toTopOf="@+id/sparkview" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/businessName"
@@ -71,9 +113,10 @@
                 android:layout_height="wrap_content"
                 android:text='@{"Business Overview: \n"+user.business.businessName}'
                 android:lines="2"
+                android:layout_marginTop="40dp"
                 style="@style/TextAppearance.AppCompat.Large"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/userName" />
+                app:layout_constraintTop_toBottomOf="@+id/graphCard" />
 
 
             <androidx.cardview.widget.CardView
@@ -90,7 +133,7 @@
                     android:id="@+id/dashStat1"
                     style="@style/TextAppearance.AppCompat.Large"
                     android:layout_marginVertical="24dp"
-                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginHorizontal="32dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -111,7 +154,7 @@
                     android:id="@+id/dashStat2"
                     style="@style/TextAppearance.AppCompat.Large"
                     android:layout_marginVertical="24dp"
-                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginHorizontal="32dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -132,7 +175,7 @@
                     android:id="@+id/dashStat3"
                     style="@style/TextAppearance.AppCompat.Large"
                     android:layout_marginVertical="24dp"
-                    android:layout_marginHorizontal="8dp"
+                    android:layout_marginHorizontal="32dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="16dp"
@@ -158,52 +201,54 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Invoice Data"
+                        android:layout_marginLeft="16dp"
                         android:id="@+id/graphLabel"
                         style="@style/TextAppearance.AppCompat.Medium"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         />
+
                     <TextView
-                        android:layout_marginTop="4dp"
+                        android:id="@+id/paidLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/paidLabel"
+                        android:layout_marginTop="4dp"
                         android:text='@{"Paid: "+dashStats.paidCount}'
-                        app:layout_constraintTop_toBottomOf="@id/graphLabel"
-                        app:layout_constraintStart_toStartOf="parent"
-                        />
+                        app:layout_constraintStart_toStartOf="@+id/graphLabel"
+                        app:layout_constraintTop_toBottomOf="@id/graphLabel" />
+
                     <ProgressBar
                         android:id="@+id/progressBar"
                         style="?android:attr/progressBarStyleHorizontal"
-                        app:layout_constraintTop_toBottomOf="@id/paidLabel"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
                         android:layout_width="0dp"
-                        android:scaleY="8"
                         android:layout_height="45dp"
                         android:progress="0"
-                        />
+                        android:scaleY="8"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginRight="16dp"
+                        app:layout_constraintStart_toStartOf="@+id/graphLabel"
+                        app:layout_constraintTop_toBottomOf="@id/paidLabel" />
+
                     <TextView
-                        android:layout_marginTop="8dp"
+                        android:id="@+id/unseenLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/unseenLabel"
+                        android:layout_marginTop="8dp"
                         android:text='@{"Unpaid: "+dashStats.unseenCount}'
-                        app:layout_constraintTop_toBottomOf="@id/progressBar"
-                        app:layout_constraintStart_toStartOf="parent"
-                        />
+                        app:layout_constraintStart_toStartOf="@+id/progressBar"
+                        app:layout_constraintTop_toBottomOf="@id/progressBar" />
+
                     <ProgressBar
                         android:id="@+id/progressBar2"
-                        app:layout_constraintTop_toBottomOf="@id/unseenLabel"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="0dp"
-                        android:scaleY="8"
-                        android:progressTint="@color/colorAccentLight"
                         android:layout_height="45dp"
                         android:progress="0"
-                        />
+                        android:progressTint="@color/colorAccentLight"
+                        android:scaleY="8"
+                        app:layout_constraintEnd_toEndOf="@+id/progressBar"
+                        app:layout_constraintStart_toStartOf="@+id/progressBar"
+                        app:layout_constraintTop_toBottomOf="@id/unseenLabel" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </androidx.cardview.widget.CardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
